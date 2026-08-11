@@ -44,7 +44,7 @@ export default function TokensPage() {
         Every color is defined once in OKLCH in <code>src/app/globals.css</code>, with a
         light and dark value, and consumed everywhere through a semantic Tailwind class
         (<code>bg-primary</code>, never a literal hex). Swatches below reflect the
-        current theme — toggle light/dark in the header and they'll update.
+        current theme — toggle light/dark in the header and they&apos;ll update.
       </p>
 
       <h2>Core surfaces</h2>
@@ -57,8 +57,8 @@ export default function TokensPage() {
 
       <h2>Accent</h2>
       <p>
-        The portfolio's actual brand color — used for primary buttons, focus rings, and
-        the "Default" badge. <code>--primary-text</code> is the same hue at a lightness
+        The portfolio&apos;s actual brand color — used for primary buttons, focus rings, and
+        the &quot;Default&quot; badge. <code>--primary-text</code> is the same hue at a lightness
         safe to use directly as link/icon text (the solid-fill value fails contrast as
         text in dark mode).
       </p>
@@ -74,7 +74,7 @@ export default function TokensPage() {
       <h2>Status colors</h2>
       <p>
         Each has a solid form (paired with white text, verified ≥4.5:1) and a{" "}
-        <code>-foreground</code> form (that hue's text-safe lightness, for use directly
+        <code>-foreground</code> form (that hue&apos;s text-safe lightness, for use directly
         on the page/card background — outline badges, alert icons, error text).
       </p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -118,7 +118,7 @@ export default function TokensPage() {
         </div>
         <div>
           <p className="font-serif text-lg italic">
-            Instrument Serif — used sparingly, the way a portfolio italicizes its owner's
+            Instrument Serif — used sparingly, the way a portfolio italicizes its owner&apos;s
             name.
           </p>
           <code className="text-xs text-muted-foreground">--font-serif</code>
@@ -128,8 +128,8 @@ export default function TokensPage() {
       <h2>Texture</h2>
       <p>
         A fixed, theme-aware dot-grain overlay (<code>body::before</code> in{" "}
-        <code>globals.css</code>) gives the background a subtle paper feel. It's
-        intentionally faint — don't expect it to be obvious in a screenshot.
+        <code>globals.css</code>) gives the background a subtle paper feel. It&apos;s
+        intentionally faint — don&apos;t expect it to be obvious in a screenshot.
       </p>
 
       <h2>Using tokens in your own components</h2>

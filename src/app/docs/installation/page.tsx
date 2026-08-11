@@ -6,15 +6,15 @@ export default function InstallationPage() {
     <Prose>
       <h1>Installation</h1>
       <p>
-        This isn't published as an npm package — it's a working Next.js app you fork or
-        clone, then copy the pieces you need from. That's deliberate: a design system
+        This isn&apos;t published as an npm package — it&apos;s a working Next.js app you fork or
+        clone, then copy the pieces you need from. That&apos;s deliberate: a design system
         this specific to one visual identity is more useful as a starting point you own
         than a black-box dependency.
       </p>
 
       <h2>Option 1 — fork and run it as-is</h2>
       <p>
-        Best if you're starting a new project from scratch and want the tokens, fonts,
+        Best if you&apos;re starting a new project from scratch and want the tokens, fonts,
         and texture already wired up.
       </p>
       <CodeBlock label="terminal">

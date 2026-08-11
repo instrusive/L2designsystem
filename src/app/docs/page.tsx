@@ -14,7 +14,7 @@ export default function DocsOverviewPage() {
         italic accent, and a subtle fixed paper-grain texture.
       </p>
       <p>
-        It's built to be dropped into a real project, not admired as a token file: every
+        It&rsquo;s built to be dropped into a real project, not admired as a token file: every
         color pairing is verified against WCAG AA contrast, the data table has search,
         filtering, row selection, column visibility, and virtualization, and every
         component in this system has a working demo — not a static screenshot.
@@ -32,11 +32,11 @@ export default function DocsOverviewPage() {
         </li>
         <li>
           <Link href="/docs/components">Components</Link> — every installed component,
-          what it's for, and where to see it.
+          what it&rsquo;s for, and where to see it.
         </li>
         <li>
           <Link href="/docs/ai-usage">Using with AI</Link> — how to point an AI coding
-          agent at this repo and get changes that don't break the theming.
+          agent at this repo and get changes that don&apos;t break the theming.
         </li>
         <li>
           <Link href="/explorer">Explorer</Link> — every component in isolation, several
@@ -48,7 +48,7 @@ export default function DocsOverviewPage() {
       <p>
         Most design system starters look like a design system — evenly-spaced neutral
         grays, a default blue accent, the same shadow-xs on every card. This one is meant
-        to look like a specific person's site, because it was built to become the actual
+        to look like a specific person&apos;s site, because it was built to become the actual
         foundation for a portfolio and prototypes, not a generic template.
       </p>
 

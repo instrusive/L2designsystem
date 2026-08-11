@@ -8,7 +8,7 @@ export default function AiUsagePage() {
       <h1>Using this with AI</h1>
       <p>
         This entire design system — the reskin, the data table features, the WCAG fixes,
-        this docs site — was built with an AI coding agent (Claude Code). It's set up to
+        this docs site — was built with an AI coding agent (Claude Code). It&apos;s set up to
         be extended the same way. This page is the guide for doing that well, based on
         mistakes that actually happened while building it.
       </p>
@@ -26,13 +26,13 @@ export default function AiUsagePage() {
         how ReUI components get installed, why the data table is pinned to TanStack Table
         v8, the exact CSS gotcha to check after every <code>shadcn add</code>. Claude Code
         and most modern coding agents read this file automatically at session start. If
-        you're using a tool that doesn't, paste its contents into your first message.
+        you&apos;re using a tool that doesn&apos;t, paste its contents into your first message.
       </p>
 
       <h2>A prompt that works</h2>
       <p>
-        Vague requests ("add a date picker") produce plausible-looking but
-        token-inconsistent output. Specific requests that reference this system's actual
+        Vague requests (&quot;add a date picker&quot;) produce plausible-looking but
+        token-inconsistent output. Specific requests that reference this system&apos;s actual
         conventions produce output that fits:
       </p>
       <CodeBlock label="prompt">
