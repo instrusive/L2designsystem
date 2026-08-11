@@ -15,6 +15,10 @@
   --popover-foreground: oklch(0.168 0 89.9);
   --primary: oklch(0.532 0.185 33.3);
   --primary-foreground: oklch(1 0 0);
+  /* --primary at solid-fill lightness fails contrast as text on its own
+     surface in dark mode; this is primary's hue at a lightness safe to use
+     for links/icons directly on the page/card background. */
+  --primary-text: oklch(0.532 0.185 33.3);
   --secondary: oklch(0.931 0.010 87.5);
   --secondary-foreground: oklch(0.352 0 89.9);
   --muted: oklch(0.931 0.010 87.5);
@@ -63,6 +67,7 @@
   --popover-foreground: oklch(0.931 0.014 88.7);
   --primary: oklch(0.56 0.194 35.2);
   --primary-foreground: oklch(1 0 0);
+  --primary-text: oklch(0.72 0.194 35.2);
   --secondary: oklch(0.273 0 89.9);
   --secondary-foreground: oklch(0.855 0.019 89.4);
   --muted: oklch(0.273 0 89.9);
@@ -136,6 +141,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-text: var(--primary-text);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);

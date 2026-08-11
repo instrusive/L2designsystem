@@ -389,7 +389,7 @@ function FilterInput<T = unknown>({
         <InputGroupAddon align="inline-end">
           <Tooltip>
             <TooltipTrigger render={<InputGroupButton size="icon-xs" />}>
-              <AlertCircleIcon className="text-destructive size-3.5" />
+              <AlertCircleIcon className="text-destructive-foreground size-3.5" />
             </TooltipTrigger>
             <TooltipContent>
               <p className="text-sm">{validationMessage}</p>
@@ -838,7 +838,7 @@ function FilterOperatorDropdown<T = unknown>({
           >
             <span>{op.label}</span>
             <CheckIcon className={cn(
-                                "text-primary ms-auto",
+                                "text-primary-text ms-auto",
                                 op.value === operator ? "opacity-100" : "opacity-0"
                               )} />
           </DropdownMenuItem>
