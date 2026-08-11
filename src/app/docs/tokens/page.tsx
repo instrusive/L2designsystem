@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
@@ -27,24 +28,17 @@ function Swatch({
   );
 }
 
-function RadiusSwatch({ name, className }: { name: string; className: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <div className={cn("size-16 border-2 border-primary bg-secondary", className)} />
-      <code className="text-xs text-muted-foreground">{name}</code>
-    </div>
-  );
-}
-
 export default function TokensPage() {
   return (
     <Prose className="max-w-4xl">
-      <h1>Design tokens</h1>
+      <h1>Colors</h1>
       <p>
         Every color is defined once in OKLCH in <code>src/app/globals.css</code>, with a
         light and dark value, and consumed everywhere through a semantic Tailwind class
         (<code>bg-primary</code>, never a literal hex). Swatches below reflect the
-        current theme — toggle light/dark in the header and they&apos;ll update.
+        current theme — toggle light/dark in the header and they&apos;ll update. For
+        radius and font tokens, see <Link href="/docs/spacing">Spacing &amp; radius</Link>{" "}
+        and <Link href="/docs/typography">Typography</Link>.
       </p>
 
       <h2>Core surfaces</h2>
@@ -92,37 +86,6 @@ export default function TokensPage() {
           className="bg-card"
           textClassName="text-destructive-foreground"
         />
-      </div>
-
-      <h2>Radius</h2>
-      <p>
-        Base <code>--radius</code> is 0.25rem — deliberately subtle, near-sharp corners
-        rather than the rounder scale most shadcn projects ship with.
-      </p>
-      <div className="grid grid-cols-3 gap-6 sm:grid-cols-6">
-        <RadiusSwatch name="sm" className="rounded-sm" />
-        <RadiusSwatch name="md" className="rounded-md" />
-        <RadiusSwatch name="lg" className="rounded-lg" />
-        <RadiusSwatch name="xl" className="rounded-xl" />
-        <RadiusSwatch name="2xl" className="rounded-2xl" />
-        <RadiusSwatch name="full (badges)" className="rounded-full" />
-      </div>
-
-      <h2>Fonts</h2>
-      <div className="flex flex-col gap-4">
-        <div>
-          <p className="font-sans text-lg">
-            JetBrains Mono — the base UI font, used for everything except italic accents.
-          </p>
-          <code className="text-xs text-muted-foreground">--font-sans / --font-mono</code>
-        </div>
-        <div>
-          <p className="font-serif text-lg italic">
-            Instrument Serif — used sparingly, the way a portfolio italicizes its owner&apos;s
-            name.
-          </p>
-          <code className="text-xs text-muted-foreground">--font-serif</code>
-        </div>
       </div>
 
       <h2>Texture</h2>

@@ -3,6 +3,15 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+/* Guards hover: styles behind an actual hover-capable pointer, so touch
+   taps don't get stuck showing a hover state. Was referenced in 8+ files
+   but never defined — every hover-only:hover:* utility in the codebase
+   was silently compiling to nothing until this was added. */
+@custom-variant hover-only {
+  @media (hover: hover) {
+    @slot;
+  }
+}
 @source "./components/**/*.tsx";
 
 :root {
@@ -17,12 +26,17 @@
   --primary-foreground: oklch(1 0 0);
   /* --primary at solid-fill lightness fails contrast as text on its own
      surface in dark mode; this is primary's hue at a lightness safe to use
-     for links/icons directly on the page/card background. */
-  --primary-text: oklch(0.532 0.185 33.3);
+     for links/icons directly on the page/card background. 0.532 measured
+     ~4.3:1 against the primary-light Badge's tinted background (Kanban
+     priority tags) — under 4.5:1. Darkened to clear ~5:1 there too. */
+  --primary-text: oklch(0.497 0.185 33.3);
   --secondary: oklch(0.931 0.010 87.5);
   --secondary-foreground: oklch(0.352 0 89.9);
   --muted: oklch(0.931 0.010 87.5);
-  --muted-foreground: oklch(0.622 0.010 78.3);
+  /* 0.622 measured ~2.9:1 against background/card — fails WCAG AA (4.5:1) for
+     normal-size text. Darkened, same chroma/hue, to ~4.6-5:1 across background,
+     card, and secondary/muted surfaces. */
+  --muted-foreground: oklch(0.508 0.010 78.3);
   --accent: oklch(0.931 0.010 87.5);
   --accent-foreground: oklch(0.168 0 89.9);
   /* Badge's solid variants hardcode text-white against these fills, so
@@ -34,13 +48,28 @@
   --success-foreground: oklch(0.46 0.185 149.5);
   --warning: oklch(0.545 0.185 70.6);
   --warning-foreground: oklch(0.5 0.185 70.6);
+  /* light destructive/warning-foreground measured 4.5-4.8:1 against their
+     own -light Badge tint — passing but thin, left as-is */
   --info: oklch(0.545 0.185 259.6);
   --info-foreground: oklch(0.5 0.185 259.6);
   --invert: var(--color-zinc-900);
   --invert-foreground: var(--color-zinc-50);
-  --border: oklch(0.824 0.013 86.8);
-  --input: oklch(0.824 0.013 86.8);
+  /* 0.824 measured ~1.4:1 against background/card — fails WCAG 1.4.11
+     (3:1, UI component boundaries). Matters because Input has a
+     transparent background, so its border is the sole boundary cue.
+     Darkened to the minimum that clears 3:1 against both surfaces —
+     background and card sit close in lightness, so this is as subtle
+     as a passing value can get without failing one of the two. */
+  --border: oklch(0.607 0.013 86.8);
+  --input: oklch(0.607 0.013 86.8);
   --ring: oklch(0.532 0.185 33.3);
+  /* --secondary/--muted mixed toward --foreground for a clearly-visible
+     "sunken" interactive fill (nav hover/active), without touching the
+     base tokens — those are already load-bearing elsewhere (e.g.
+     text-muted-foreground on bg-secondary in CodeBlock's label bar) at a
+     lightness that can't be darkened without breaking that pairing. */
+  --surface-hover: color-mix(in oklch, var(--secondary), var(--foreground) 12%);
+  --surface-active: color-mix(in oklch, var(--secondary), var(--foreground) 20%);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -67,7 +96,9 @@
   --popover-foreground: oklch(0.931 0.014 88.7);
   --primary: oklch(0.56 0.194 35.2);
   --primary-foreground: oklch(1 0 0);
-  --primary-text: oklch(0.72 0.194 35.2);
+  /* 0.72 measured ~4.4:1 against the primary-light Badge's tinted
+     background (Kanban priority tags) — under 4.5:1. Lightened. */
+  --primary-text: oklch(0.742 0.194 35.2);
   --secondary: oklch(0.273 0 89.9);
   --secondary-foreground: oklch(0.855 0.019 89.4);
   --muted: oklch(0.273 0 89.9);
@@ -75,17 +106,24 @@
   --accent: oklch(0.273 0 89.9);
   --accent-foreground: oklch(0.931 0.014 88.7);
   --destructive: oklch(0.565 0.194 22.216);
-  --destructive-foreground: oklch(0.72 0.194 22.216);
+  /* 0.72 measured ~4.4:1 against destructive-light Badge's tinted
+     background (Kanban priority tags) — under 4.5:1. Lightened. */
+  --destructive-foreground: oklch(0.744 0.194 22.216);
   --success: oklch(0.51 0.194 151.8);
   --success-foreground: oklch(0.67 0.194 151.8);
   --warning: oklch(0.54 0.194 92);
-  --warning-foreground: oklch(0.7 0.194 92);
+  /* 0.7 measured ~4.5:1 against warning-light Badge's tinted background —
+     right at the line. Lightened for real margin. */
+  --warning-foreground: oklch(0.73 0.194 92);
   --info: oklch(0.545 0.194 259.6);
   --info-foreground: oklch(0.71 0.194 259.6);
   --invert: var(--color-zinc-700);
   --invert-foreground: var(--color-zinc-50);
-  --border: oklch(0.348 0.003 106.6);
-  --input: oklch(0.348 0.003 106.6);
+  /* Same fix as light mode — see :root. 0.348 measured ~1.2-1.7:1;
+     lightened to the minimum that clears 3:1 against both background
+     and card. */
+  --border: oklch(0.570 0.003 106.6);
+  --input: oklch(0.570 0.003 106.6);
   --ring: oklch(0.56 0.194 35.2);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -108,6 +146,10 @@
   --font-sans: var(--font-jetbrains-mono);
   --font-heading: var(--font-jetbrains-mono);
   --font-serif: var(--font-instrument-serif);
+  /* Optional compact body-copy size — 13px vs. the 14px (text-sm) default.
+     Opt-in only; nothing switches to this automatically. */
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.125rem;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -124,6 +166,8 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
   --color-info-foreground: var(--info-foreground);
   --color-info: var(--info);
   --color-warning-foreground: var(--warning-foreground);

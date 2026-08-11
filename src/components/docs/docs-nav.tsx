@@ -15,17 +15,30 @@ export const docsNav: DocsNavGroup[] = [
     items: [
       { href: "/docs", label: "Overview" },
       { href: "/docs/installation", label: "Installation" },
+      { href: "/docs/principles", label: "Principles" },
     ],
   },
   {
-    title: "Design",
-    items: [{ href: "/docs/tokens", label: "Design tokens" }],
+    title: "Foundations",
+    items: [
+      { href: "/docs/tokens", label: "Colors" },
+      { href: "/docs/typography", label: "Typography" },
+      { href: "/docs/iconography", label: "Iconography" },
+      { href: "/docs/spacing", label: "Spacing & radius" },
+      { href: "/docs/elevation", label: "Elevation" },
+      { href: "/docs/motion", label: "Motion" },
+    ],
+  },
+  {
+    title: "Guidelines",
+    items: [{ href: "/docs/accessibility", label: "Accessibility" }],
   },
   {
     title: "Reference",
     items: [
       { href: "/docs/components", label: "Components" },
       { href: "/docs/ai-usage", label: "Using with AI" },
+      { href: "/docs/changelog", label: "Changelog" },
     ],
   },
 ];
@@ -49,8 +62,8 @@ export function DocsNav() {
                 className={cn(
                   "rounded-md px-2 py-1.5 transition-colors",
                   active
-                    ? "bg-secondary font-medium text-foreground"
-                    : "text-muted-foreground hover-only:hover:bg-secondary/50 hover-only:hover:text-foreground"
+                    ? "bg-surface-active font-medium text-foreground"
+                    : "text-muted-foreground hover-only:hover:bg-surface-hover hover-only:hover:text-foreground"
                 )}
               >
                 {item.label}

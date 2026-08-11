@@ -27,8 +27,8 @@ export function ExplorerNav() {
                   className={cn(
                     "rounded-md px-2 py-1 transition-colors",
                     active
-                      ? "bg-secondary font-medium text-foreground"
-                      : "text-muted-foreground hover-only:hover:bg-secondary/50 hover-only:hover:text-foreground"
+                      ? "bg-surface-active font-medium text-foreground"
+                      : "text-muted-foreground hover-only:hover:bg-surface-hover hover-only:hover:text-foreground"
                   )}
                 >
                   {c.name}

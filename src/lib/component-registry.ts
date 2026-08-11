@@ -12,7 +12,7 @@ export const componentRegistry: ComponentEntry[] = [
     slug: "button",
     name: "Button",
     category: "Primitives",
-    description: "Six variants (default, outline, secondary, ghost, destructive, link), five sizes, polymorphic via render.",
+    description: "Six variants (default, outline, secondary, ghost, destructive, link), five sizes, polymorphic via render. Supports leading/trailing icons and icon-only sizing.",
     source: "src/components/ui/button.tsx",
   },
   {

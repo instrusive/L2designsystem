@@ -27,8 +27,21 @@ export default function DocsOverviewPage() {
           own project and what depends on what.
         </li>
         <li>
-          <Link href="/docs/tokens">Design tokens</Link> — the full color, radius, and
-          font system, with live swatches.
+          <Link href="/docs/principles">Principles</Link> — the handful of rules every
+          decision in this system traces back to.
+        </li>
+        <li>
+          Foundations —{" "}
+          <Link href="/docs/tokens">colors</Link>,{" "}
+          <Link href="/docs/typography">typography</Link>,{" "}
+          <Link href="/docs/iconography">iconography</Link>,{" "}
+          <Link href="/docs/spacing">spacing &amp; radius</Link>,{" "}
+          <Link href="/docs/elevation">elevation</Link>, and{" "}
+          <Link href="/docs/motion">motion</Link>, all with live examples.
+        </li>
+        <li>
+          <Link href="/docs/accessibility">Accessibility</Link> — what&rsquo;s solid, what&rsquo;s
+          a deliberate practice, and what&rsquo;s an honest gap.
         </li>
         <li>
           <Link href="/docs/components">Components</Link> — every installed component,
@@ -42,6 +55,10 @@ export default function DocsOverviewPage() {
           <Link href="/explorer">Explorer</Link> — every component in isolation, several
           with live prop controls.
         </li>
+        <li>
+          <Link href="/docs/changelog">Changelog</Link> — what&rsquo;s changed, grouped by
+          theme.
+        </li>
       </ul>
 
       <h2>Why this exists</h2>
@@ -49,7 +66,8 @@ export default function DocsOverviewPage() {
         Most design system starters look like a design system — evenly-spaced neutral
         grays, a default blue accent, the same shadow-xs on every card. This one is meant
         to look like a specific person&apos;s site, because it was built to become the actual
-        foundation for a portfolio and prototypes, not a generic template.
+        foundation for a portfolio and prototypes, not a generic template. See{" "}
+        <Link href="/docs/principles">Principles</Link> for the rest of the reasoning.
       </p>
 
       <div className="mt-6 flex gap-3">
