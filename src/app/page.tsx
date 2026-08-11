@@ -255,7 +255,9 @@ export default function Home() {
     <div className="flex flex-1 flex-col bg-background">
       <header className="flex items-center justify-between border-b border-border px-6 py-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">L2 Design System</h1>
+          <h1 className="text-2xl font-semibold">
+            L2 <em className="font-serif text-[1.15em] italic">Design System</em>
+          </h1>
           <p className="text-sm text-muted-foreground">
             Next.js 16 + React 19 + Tailwind v4, built on ReUI
           </p>
