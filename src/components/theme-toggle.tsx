@@ -10,6 +10,9 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // Mount-flag pattern for SSR/client hydration safety with next-themes;
+  // there's no external system to synchronize against here.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
