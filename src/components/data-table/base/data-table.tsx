@@ -288,7 +288,7 @@ export function DataTable<TData, TValue>({
         </div>
       )}
 
-      <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-surface">
+      <div className="overflow-hidden rounded-xl border border-border bg-card">
         {virtualize ? (
           <div
             ref={scrollRef}
@@ -358,10 +358,12 @@ export function DataTable<TData, TValue>({
                         <div
                           key={cell.id}
                           role="cell"
-                          className="flex shrink-0 items-center px-4 py-2.5 align-middle"
+                          className="flex shrink-0 items-center overflow-hidden px-4 py-2.5 align-middle"
                           style={{ width: cell.column.getSize() }}
                         >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          <span className="truncate">
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </span>
                         </div>
                       ))}
                     </div>
