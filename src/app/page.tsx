@@ -85,7 +85,35 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { useState } from "react";
+import { Tree, TreeItem, TreeItemLabel } from "@/components/reui/tree";
+import { hotkeysCoreFeature, syncDataLoaderFeature } from "@headless-tree/core";
+import { useTree } from "@headless-tree/react";
+import {
+  Kanban,
+  KanbanBoard,
+  KanbanColumn,
+  KanbanColumnContent,
+  KanbanColumnHandle,
+  KanbanItem,
+  KanbanItemHandle,
+  KanbanOverlay,
+} from "@/components/reui/kanban";
+import { Rating } from "@/components/reui/rating";
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+} from "@/components/reui/number-field";
+import { PhoneInput } from "@/components/reui/phone-input";
+import {
+  Sortable,
+  SortableItem,
+  SortableItemHandle,
+} from "@/components/reui/sortable";
+import { GripVerticalIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface Invoice {
@@ -201,6 +229,75 @@ const sections = [
   { id: "stepper", label: "Stepper" },
   { id: "empty", label: "Empty state" },
   { id: "toast", label: "Toast" },
+  { id: "tree", label: "Tree" },
+  { id: "kanban", label: "Kanban" },
+  { id: "rating", label: "Rating" },
+  { id: "number-field", label: "Number field" },
+  { id: "phone-input", label: "Phone input" },
+  { id: "sortable", label: "Sortable" },
+];
+
+interface TreeNode {
+  name: string;
+  children?: string[];
+}
+
+const treeItems: Record<string, TreeNode> = {
+  root: { name: "components", children: ["ui", "reui", "data-table"] },
+  ui: { name: "ui", children: ["button.tsx", "card.tsx", "input.tsx"] },
+  reui: { name: "reui", children: ["badge.tsx", "filters.tsx", "kanban.tsx"] },
+  "data-table": { name: "data-table", children: ["data-table.tsx"] },
+  "button.tsx": { name: "button.tsx" },
+  "card.tsx": { name: "card.tsx" },
+  "input.tsx": { name: "input.tsx" },
+  "badge.tsx": { name: "badge.tsx" },
+  "filters.tsx": { name: "filters.tsx" },
+  "kanban.tsx": { name: "kanban.tsx" },
+  "data-table.tsx": { name: "data-table.tsx" },
+};
+
+interface KanbanTask {
+  id: string;
+  title: string;
+  priority: "low" | "medium" | "high";
+}
+
+const kanbanColumnTitles: Record<string, string> = {
+  backlog: "Backlog",
+  inProgress: "In progress",
+  done: "Done",
+};
+
+const initialKanbanColumns: Record<string, KanbanTask[]> = {
+  backlog: [
+    { id: "1", title: "Install Gantt chart", priority: "low" },
+    { id: "2", title: "Add dark-mode chart colors", priority: "medium" },
+  ],
+  inProgress: [{ id: "3", title: "Fix badge contrast", priority: "high" }],
+  done: [
+    { id: "4", title: "Reskin to match portfolio", priority: "high" },
+    { id: "5", title: "Add row selection to data table", priority: "medium" },
+  ],
+};
+
+const kanbanPriorityVariant: Record<
+  KanbanTask["priority"],
+  "destructive-light" | "primary-light" | "warning-light"
+> = {
+  high: "destructive-light",
+  medium: "primary-light",
+  low: "warning-light",
+};
+
+interface SortableTask {
+  id: string;
+  title: string;
+}
+
+const initialSortableTasks: SortableTask[] = [
+  { id: "1", title: "Ship the portfolio reskin" },
+  { id: "2", title: "Run the WCAG contrast pass" },
+  { id: "3", title: "Fill out the component catalog" },
 ];
 
 const filterFields: FilterFieldConfig[] = [
@@ -246,10 +343,81 @@ function Section({
   );
 }
 
+function KanbanTaskCard({ task }: { task: KanbanTask }) {
+  return (
+    <KanbanItem value={task.id}>
+      <KanbanItemHandle>
+        <Card>
+          <CardContent className="flex items-center justify-between gap-2">
+            <span className="line-clamp-1 text-sm font-medium">{task.title}</span>
+            <Badge variant={kanbanPriorityVariant[task.priority]} className="capitalize">
+              {task.priority}
+            </Badge>
+          </CardContent>
+        </Card>
+      </KanbanItemHandle>
+    </KanbanItem>
+  );
+}
+
+function KanbanTaskColumn({ value, tasks }: { value: string; tasks: KanbanTask[] }) {
+  return (
+    <KanbanColumn value={value}>
+      <Card className="mb-2.5">
+        <CardHeader className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <span className="text-sm font-semibold">{kanbanColumnTitles[value]}</span>
+            <Badge variant="outline">{tasks.length}</Badge>
+          </div>
+          <KanbanColumnHandle
+            render={(props) => (
+              <Button {...props} size="icon-xs" variant="ghost">
+                <GripVerticalIcon />
+              </Button>
+            )}
+          />
+        </CardHeader>
+        <CardContent>
+          <KanbanColumnContent value={value} className="flex flex-col gap-2.5">
+            {tasks.map((task) => (
+              <KanbanTaskCard key={task.id} task={task} />
+            ))}
+          </KanbanColumnContent>
+        </CardContent>
+      </Card>
+    </KanbanColumn>
+  );
+}
+
 export default function Home() {
   const [filters, setFilters] = useState<Filter[]>(() => [
     createFilter("status", "is_any_of", ["paid", "pending"]),
   ]);
+
+  const tree = useTree<TreeNode>({
+    initialState: { expandedItems: ["root", "ui", "reui"] },
+    indent: 20,
+    rootItemId: "root",
+    getItemName: (item) => item.getItemData().name,
+    isItemFolder: (item) => (item.getItemData()?.children?.length ?? 0) > 0,
+    dataLoader: {
+      getItem: (itemId) => treeItems[itemId],
+      getChildren: (itemId) => treeItems[itemId].children ?? [],
+    },
+    features: [syncDataLoaderFeature, hotkeysCoreFeature],
+  });
+
+  const [kanbanColumns, setKanbanColumns] = useState(initialKanbanColumns);
+  const [rating, setRating] = useState(3);
+  const [phone, setPhone] = useState("");
+  const [sortableTasks, setSortableTasks] = useState(initialSortableTasks);
+
+  // dnd-kit's DndContext generates its a11y description id from an
+  // incrementing counter that isn't stable between server and client
+  // render, so Kanban/Sortable (both DndContext-based) only mount client-side.
+  const [dndReady, setDndReady] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setDndReady(true), []);
 
   return (
     <div className="flex flex-1 flex-col bg-background">
@@ -626,6 +794,86 @@ export default function Home() {
                 Show success toast
               </Button>
             </div>
+          </Section>
+
+          <Section id="tree" title="Tree">
+            <div className="w-full max-w-xs">
+              <Tree indent={20} tree={tree}>
+                {tree.getItems().map((item) => (
+                  <TreeItem key={item.getId()} item={item}>
+                    <TreeItemLabel />
+                  </TreeItem>
+                ))}
+              </Tree>
+            </div>
+          </Section>
+
+          <Section id="kanban" title="Kanban">
+            {dndReady ? (
+              <Kanban
+                value={kanbanColumns}
+                onValueChange={setKanbanColumns}
+                getItemValue={(item) => item.id}
+              >
+                <KanbanBoard className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-3">
+                  {Object.entries(kanbanColumns).map(([columnValue, tasks]) => (
+                    <KanbanTaskColumn key={columnValue} value={columnValue} tasks={tasks} />
+                  ))}
+                </KanbanBoard>
+                <KanbanOverlay className="rounded-md border-2 border-dashed bg-muted/10" />
+              </Kanban>
+            ) : (
+              <Skeleton className="h-48 w-full" />
+            )}
+          </Section>
+
+          <Section id="rating" title="Rating">
+            <Rating rating={rating} editable onRatingChange={setRating} showValue />
+          </Section>
+
+          <Section id="number-field" title="Number field">
+            <NumberField defaultValue={1} min={0} max={10} className="w-32">
+              <NumberFieldGroup>
+                <NumberFieldDecrement />
+                <NumberFieldInput />
+                <NumberFieldIncrement />
+              </NumberFieldGroup>
+            </NumberField>
+          </Section>
+
+          <Section id="phone-input" title="Phone input">
+            <PhoneInput
+              value={phone}
+              onChange={(value) => setPhone(value ?? "")}
+              defaultCountry="US"
+              placeholder="Enter phone number"
+              className="max-w-xs"
+            />
+          </Section>
+
+          <Section id="sortable" title="Sortable">
+            {dndReady ? (
+              <Sortable
+                value={sortableTasks}
+                onValueChange={setSortableTasks}
+                getItemValue={(item) => item.id}
+                strategy="vertical"
+                className="max-w-md space-y-2"
+              >
+                {sortableTasks.map((task) => (
+                  <SortableItem key={task.id} value={task.id}>
+                    <div className="flex items-center gap-3 rounded-md border border-border bg-background p-3 transition-colors hover-only:hover:bg-muted/40">
+                      <SortableItemHandle className="text-muted-foreground hover-only:hover:text-foreground">
+                        <GripVerticalIcon className="size-4" />
+                      </SortableItemHandle>
+                      <span className="text-sm font-medium">{task.title}</span>
+                    </div>
+                  </SortableItem>
+                ))}
+              </Sortable>
+            ) : (
+              <Skeleton className="h-40 w-full max-w-md" />
+            )}
           </Section>
         </main>
       </div>
