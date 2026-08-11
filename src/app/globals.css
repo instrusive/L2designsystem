@@ -21,14 +21,17 @@
   --muted-foreground: oklch(0.622 0.010 78.3);
   --accent: oklch(0.931 0.010 87.5);
   --accent-foreground: oklch(0.168 0 89.9);
+  /* Badge's solid variants hardcode text-white against these fills, so
+     -foreground here isn't "text on solid bg" — it's each hue at a
+     contrast-safe lightness for use AS text (outline/tinted badges). */
   --destructive: oklch(0.56 0.185 27.325);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive-foreground: oklch(0.51 0.185 27.325);
   --success: oklch(0.51 0.185 149.5);
-  --success-foreground: oklch(1 0 0);
+  --success-foreground: oklch(0.46 0.185 149.5);
   --warning: oklch(0.545 0.185 70.6);
-  --warning-foreground: oklch(1 0 0);
+  --warning-foreground: oklch(0.5 0.185 70.6);
   --info: oklch(0.545 0.185 259.6);
-  --info-foreground: oklch(1 0 0);
+  --info-foreground: oklch(0.5 0.185 259.6);
   --invert: var(--color-zinc-900);
   --invert-foreground: var(--color-zinc-50);
   --border: oklch(0.824 0.013 86.8);
@@ -67,13 +70,13 @@
   --accent: oklch(0.273 0 89.9);
   --accent-foreground: oklch(0.931 0.014 88.7);
   --destructive: oklch(0.565 0.194 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive-foreground: oklch(0.72 0.194 22.216);
   --success: oklch(0.51 0.194 151.8);
-  --success-foreground: oklch(1 0 0);
+  --success-foreground: oklch(0.67 0.194 151.8);
   --warning: oklch(0.54 0.194 92);
-  --warning-foreground: oklch(1 0 0);
+  --warning-foreground: oklch(0.7 0.194 92);
   --info: oklch(0.545 0.194 259.6);
-  --info-foreground: oklch(1 0 0);
+  --info-foreground: oklch(0.71 0.194 259.6);
   --invert: var(--color-zinc-700);
   --invert-foreground: var(--color-zinc-50);
   --border: oklch(0.348 0.003 106.6);

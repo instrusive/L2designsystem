@@ -23,31 +23,31 @@ const badgeVariants = cva(
         focus: "bg-focus text-focus-foreground",
         invert: "bg-invert text-invert-foreground",
         "primary-light":
-          "border-primary/10 bg-primary/10 text-primary dark:border-primary/25 dark:bg-primary/15 dark:text-primary",
+          "border-primary/10 bg-primary/10 text-primary dark:border-primary/25 dark:bg-primary/15 dark:text-[oklch(0.72_0.194_35.2)]",
         "warning-light":
-          "border-warning/15 bg-warning/10 text-warning-foreground dark:border-warning/25 dark:bg-warning/15 dark:text-warning",
+          "border-warning/15 bg-warning/10 text-warning-foreground dark:border-warning/25 dark:bg-warning/15",
         "success-light":
-          "border-success/15 bg-success/10 text-success-foreground dark:border-success/25 dark:bg-success/15 dark:text-success",
+          "border-success/15 bg-success/10 text-success-foreground dark:border-success/25 dark:bg-success/15",
         "info-light":
-          "border-info/15 bg-info/10 text-info-foreground dark:border-info/25 dark:bg-info/15 dark:text-info",
+          "border-info/15 bg-info/10 text-info-foreground dark:border-info/25 dark:bg-info/15",
         "destructive-light":
-          "border-destructive/15 bg-destructive/10 text-destructive-foreground dark:border-destructive/25 dark:bg-destructive/15 dark:text-destructive",
+          "border-destructive/15 bg-destructive/10 text-destructive-foreground dark:border-destructive/25 dark:bg-destructive/15",
         "invert-light":
           "border-invert/15 bg-invert/10 text-foreground dark:border-invert/45 dark:bg-invert/35 dark:text-invert-foreground",
         "focus-light":
           "border-focus/15 bg-focus/10 text-focus-foreground dark:border-focus/25 dark:bg-focus/15 dark:text-focus",
         "primary-outline":
-          "bg-background border-border text-primary dark:bg-input/30",
+          "bg-transparent border-primary/35 text-primary dark:text-[oklch(0.72_0.194_35.2)] dark:border-[oklch(0.72_0.194_35.2)]/35",
         "warning-outline":
-          "bg-background border-border text-warning-foreground dark:bg-input/30",
+          "bg-transparent border-warning-foreground/35 text-warning-foreground",
         "success-outline":
-          "bg-background border-border text-success-foreground dark:bg-input/30",
+          "bg-transparent border-success-foreground/35 text-success-foreground",
         "info-outline":
-          "bg-background border-border text-info-foreground dark:bg-input/30",
+          "bg-transparent border-info-foreground/35 text-info-foreground",
         "destructive-outline":
-          "bg-background border-border text-destructive-foreground dark:bg-input/30",
+          "bg-transparent border-destructive-foreground/35 text-destructive-foreground",
         "invert-outline":
-          "bg-background border-border text-invert-foreground dark:bg-input/30",
+          "bg-transparent border-invert/35 text-invert dark:text-invert-foreground dark:border-invert-foreground/35",
         "focus-outline":
           "bg-background border-border text-focus-foreground dark:bg-input/30",
       },

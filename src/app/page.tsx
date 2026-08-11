@@ -299,9 +299,18 @@ export default function Home() {
 
           <Section id="badges" title="Badges">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge>Default</Badge>
+              <Badge variant="primary-outline">Default</Badge>
               <Badge variant="secondary">Secondary</Badge>
               <Badge variant="outline">Outline</Badge>
+              <Badge variant="success-outline">Success</Badge>
+              <Badge variant="warning-outline">Warning</Badge>
+              <Badge variant="destructive-outline">Destructive</Badge>
+              <Badge variant="info-outline">Info</Badge>
+              <Badge variant="invert-outline">Invert</Badge>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs text-muted-foreground">Solid (higher emphasis):</span>
+              <Badge>Default</Badge>
               <Badge variant="success">Success</Badge>
               <Badge variant="warning">Warning</Badge>
               <Badge variant="destructive">Destructive</Badge>
