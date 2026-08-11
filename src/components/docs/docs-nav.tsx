@@ -1,0 +1,64 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+
+export interface DocsNavGroup {
+  title: string;
+  items: { href: string; label: string }[];
+}
+
+export const docsNav: DocsNavGroup[] = [
+  {
+    title: "Getting started",
+    items: [
+      { href: "/docs", label: "Overview" },
+      { href: "/docs/installation", label: "Installation" },
+    ],
+  },
+  {
+    title: "Design",
+    items: [{ href: "/docs/tokens", label: "Design tokens" }],
+  },
+  {
+    title: "Reference",
+    items: [
+      { href: "/docs/components", label: "Components" },
+      { href: "/docs/ai-usage", label: "Using with AI" },
+    ],
+  },
+];
+
+export function DocsNav() {
+  const pathname = usePathname();
+
+  return (
+    <nav className="flex flex-col gap-6 text-sm">
+      {docsNav.map((group) => (
+        <div key={group.title} className="flex flex-col gap-1">
+          <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            {group.title}
+          </span>
+          {group.items.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "rounded-md px-2 py-1.5 transition-colors",
+                  active
+                    ? "bg-secondary font-medium text-foreground"
+                    : "text-muted-foreground hover-only:hover:bg-secondary/50 hover-only:hover:text-foreground"
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      ))}
+    </nav>
+  );
+}

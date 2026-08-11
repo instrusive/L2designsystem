@@ -2,6 +2,12 @@
   "name": "l2-design-system",
   "version": "0.1.0",
   "private": true,
+  "description": "A component design system on Next.js, Tailwind v4, and ReUI — reskinned to match madebylianna's portfolio aesthetic.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/instrusive/L2designsystem.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
