@@ -51,6 +51,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -59,6 +60,33 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { DataTable } from "@/components/data-table/base/data-table";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  Filters,
+  createFilter,
+  type Filter,
+  type FilterFieldConfig,
+} from "@/components/reui/filters";
+import {
+  Stepper,
+  StepperContent,
+  StepperDescription,
+  StepperIndicator,
+  StepperItem,
+  StepperNav,
+  StepperPanel,
+  StepperSeparator,
+  StepperTitle,
+  StepperTrigger,
+} from "@/components/reui/stepper";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface Invoice {
   id: string;
@@ -87,6 +115,48 @@ const statusVariant: Record<Invoice["status"], "success" | "warning" | "destruct
   pending: "warning",
   overdue: "destructive",
 };
+
+const invoiceFilterFields: FilterFieldConfig[] = [
+  {
+    key: "status",
+    label: "Status",
+    type: "select",
+    options: [
+      { value: "paid", label: "Paid" },
+      { value: "pending", label: "Pending" },
+      { value: "overdue", label: "Overdue" },
+    ],
+  },
+  {
+    key: "customer",
+    label: "Customer",
+    type: "text",
+    placeholder: "Search customer...",
+  },
+];
+
+const customers = [
+  "Acme Co.",
+  "Globex",
+  "Initech",
+  "Umbrella Corp.",
+  "Soylent Corp.",
+  "Hooli",
+  "Stark Industries",
+  "Wayne Enterprises",
+  "Wonka Industries",
+  "Cyberdyne",
+  "Aperture Science",
+  "Massive Dynamic",
+];
+const statuses: Invoice["status"][] = ["paid", "pending", "overdue"];
+
+const manyInvoices: Invoice[] = Array.from({ length: 2000 }, (_, i) => ({
+  id: `INV-${2000 + i}`,
+  customer: customers[i % customers.length],
+  status: statuses[i % statuses.length],
+  amount: Math.round(((i * 37) % 2000) + 19.99),
+}));
 
 const columns: ColumnDef<Invoice>[] = [
   { accessorKey: "id", header: "Invoice" },
@@ -126,6 +196,30 @@ const sections = [
   { id: "feedback", label: "Progress & skeleton" },
   { id: "overlays", label: "Menu & tooltip" },
   { id: "data-table", label: "Data table" },
+  { id: "data-table-virtualized", label: "Virtualized table" },
+  { id: "filters", label: "Filters" },
+  { id: "stepper", label: "Stepper" },
+  { id: "empty", label: "Empty state" },
+  { id: "toast", label: "Toast" },
+];
+
+const filterFields: FilterFieldConfig[] = [
+  {
+    key: "status",
+    label: "Status",
+    type: "select",
+    options: [
+      { value: "paid", label: "Paid" },
+      { value: "pending", label: "Pending" },
+      { value: "overdue", label: "Overdue" },
+    ],
+  },
+  {
+    key: "customer",
+    label: "Customer",
+    type: "text",
+    placeholder: "Search customer...",
+  },
 ];
 
 function Section({
@@ -153,6 +247,10 @@ function Section({
 }
 
 export default function Home() {
+  const [filters, setFilters] = useState<Filter[]>(() => [
+    createFilter("status", "is_any_of", ["paid", "pending"]),
+  ]);
+
   return (
     <div className="flex flex-1 flex-col bg-background">
       <header className="flex items-center justify-between border-b border-border px-6 py-4">
@@ -370,11 +468,13 @@ export default function Home() {
                   Open menu
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuLabel>My account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem variant="destructive">Sign out</DropdownMenuItem>
+                  <DropdownMenuGroup>
+                    <DropdownMenuLabel>My account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem variant="destructive">Sign out</DropdownMenuItem>
+                  </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
 
@@ -391,13 +491,131 @@ export default function Home() {
             <Card>
               <CardHeader>
                 <CardTitle>Invoices</CardTitle>
-                <CardDescription>Data table with sorting and pagination.</CardDescription>
+                <CardDescription>
+                  Sorting, pagination, global search, column filters, row selection, and column
+                  visibility.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <DataTable columns={columns} data={invoices} pageSizeOptions={[5, 10, 20]} />
+                <DataTable
+                  columns={columns}
+                  data={invoices}
+                  pageSizeOptions={[5, 10, 20]}
+                  enableGlobalFilter
+                  globalFilterPlaceholder="Search invoices..."
+                  filterFields={invoiceFilterFields}
+                  enableRowSelection
+                  onRowSelectionChange={(rows) => {
+                    if (rows.length > 0) {
+                      toast(`${rows.length} invoice(s) selected`);
+                    }
+                  }}
+                  enableColumnVisibility
+                />
               </CardContent>
             </Card>
           </section>
+
+          <section id="data-table-virtualized" className="scroll-mt-20">
+            <Card>
+              <CardHeader>
+                <CardTitle>Virtualized table</CardTitle>
+                <CardDescription>
+                  {manyInvoices.length.toLocaleString()} rows rendered in a fixed-height scroll
+                  container instead of paginating.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <DataTable
+                  columns={columns}
+                  data={manyInvoices}
+                  enableGlobalFilter
+                  globalFilterPlaceholder="Search invoices..."
+                  virtualize
+                  maxHeight="400px"
+                />
+              </CardContent>
+            </Card>
+          </section>
+
+          <Section id="filters" title="Filters" description="Free ReUI component, pairs with data-grid.">
+            <Filters filters={filters} fields={filterFields} onChange={setFilters} />
+          </Section>
+
+          <Section id="stepper" title="Stepper">
+            <Stepper defaultValue={1}>
+              <StepperNav>
+                <StepperItem step={1}>
+                  <StepperTrigger>
+                    <StepperIndicator>1</StepperIndicator>
+                    <div className="flex flex-col items-start">
+                      <StepperTitle>Account</StepperTitle>
+                      <StepperDescription>Basic info</StepperDescription>
+                    </div>
+                  </StepperTrigger>
+                  <StepperSeparator />
+                </StepperItem>
+                <StepperItem step={2}>
+                  <StepperTrigger>
+                    <StepperIndicator>2</StepperIndicator>
+                    <div className="flex flex-col items-start">
+                      <StepperTitle>Details</StepperTitle>
+                      <StepperDescription>Company details</StepperDescription>
+                    </div>
+                  </StepperTrigger>
+                  <StepperSeparator />
+                </StepperItem>
+                <StepperItem step={3}>
+                  <StepperTrigger>
+                    <StepperIndicator>3</StepperIndicator>
+                    <div className="flex flex-col items-start">
+                      <StepperTitle>Review</StepperTitle>
+                      <StepperDescription>Confirm and submit</StepperDescription>
+                    </div>
+                  </StepperTrigger>
+                </StepperItem>
+              </StepperNav>
+              <StepperPanel className="mt-4 text-sm text-muted-foreground">
+                <StepperContent value={1}>Tell us about your account.</StepperContent>
+                <StepperContent value={2}>Add your company details.</StepperContent>
+                <StepperContent value={3}>Review everything and submit.</StepperContent>
+              </StepperPanel>
+            </Stepper>
+          </Section>
+
+          <Section id="empty" title="Empty state">
+            <Empty>
+              <EmptyHeader>
+                <EmptyTitle>No projects yet</EmptyTitle>
+                <EmptyDescription>
+                  You haven&apos;t created any projects yet. Get started by creating your
+                  first project.
+                </EmptyDescription>
+              </EmptyHeader>
+              <EmptyContent>
+                <div className="flex gap-2">
+                  <Button>Create project</Button>
+                  <Button variant="outline">Import project</Button>
+                </div>
+              </EmptyContent>
+            </Empty>
+          </Section>
+
+          <Section id="toast" title="Toast">
+            <div className="flex flex-wrap items-center gap-3">
+              <Button variant="outline" onClick={() => toast("Event has been created")}>
+                Show toast
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  toast.success("Invoice INV-1001 marked as paid")
+                }
+              >
+                Show success toast
+              </Button>
+            </div>
+          </Section>
         </main>
       </div>
     </div>
