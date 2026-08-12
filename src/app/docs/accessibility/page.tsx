@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Accessibility",
+  description: "What's solid, what's a deliberate practice, and what's an honest gap.",
+};
 
 export default function AccessibilityPage() {
   return (

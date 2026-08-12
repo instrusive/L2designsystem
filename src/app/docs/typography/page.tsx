@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Typography",
+  description: "Font pairing, type scale, and weight rules — JetBrains Mono with a sparing serif accent.",
+};
 
 function ScaleRow({
   label,

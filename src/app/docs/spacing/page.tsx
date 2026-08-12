@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Spacing & radius",
+  description: "The spacing scale actually in use across components, plus the radius scale it derives from.",
+};
 
 function SpaceRow({ token, px }: { token: string; px: string }) {
   const size = Number(token.replace("gap-", ""));

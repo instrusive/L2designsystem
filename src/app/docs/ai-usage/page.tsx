@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Using with AI",
+  description: "How to point an AI coding agent at this repo and get changes that don't break the theming.",
+};
 
 export default function AiUsagePage() {
   return (

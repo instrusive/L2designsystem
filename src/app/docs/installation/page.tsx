@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Installation",
+  description: "Fork and run this design system as-is, or copy components into an existing project.",
+};
 
 export default function InstallationPage() {
   return (

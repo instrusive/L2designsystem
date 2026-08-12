@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
+
+export const metadata: Metadata = {
+  title: "Changelog",
+  description: "What's changed in this design system, grouped by theme.",
+};
 
 function Entry({ children }: { children: React.ReactNode }) {
   return <li className="mb-1.5">{children}</li>;

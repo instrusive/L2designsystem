@@ -9,7 +9,7 @@ export function ExplorerNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-5 text-sm">
+    <div className="flex flex-col gap-5 text-sm">
       {componentCategories.map((category) => (
         <div key={category} className="flex flex-col gap-1">
           <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
@@ -37,6 +37,6 @@ export function ExplorerNav() {
             })}
         </div>
       ))}
-    </nav>
+    </div>
   );
 }

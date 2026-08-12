@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Elevation",
+  description: "Shadow means one thing: floating above the page. The flat-vs-floating rule, explained.",
+};
 
 export default function ElevationPage() {
   return (

@@ -19,7 +19,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "L2 Design System",
+  title: {
+    template: "%s · L2 Design System",
+    default: "L2 Design System",
+  },
   description: "Design system scaffold built on ReUI",
 };
 

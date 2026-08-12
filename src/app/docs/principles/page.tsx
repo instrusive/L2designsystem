@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
+
+export const metadata: Metadata = {
+  title: "Principles",
+  description: "The handful of rules every decision in this design system traces back to.",
+};
 
 export default function PrinciplesPage() {
   return (

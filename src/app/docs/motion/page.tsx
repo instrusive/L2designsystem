@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Motion",
+  description: "Interactive feedback and overlay enter/exit — the two motion contexts in active use.",
+};
 
 export default function MotionPage() {
   return (

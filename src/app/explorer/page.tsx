@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { componentRegistry } from "@/lib/component-registry";
+
+export const metadata: Metadata = {
+  title: "Explorer",
+  description: "Every component in this system, in isolation, several with live prop controls.",
+};
 
 export default function ExplorerIndexPage() {
   return (

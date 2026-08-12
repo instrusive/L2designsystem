@@ -10,9 +10,15 @@ import {
   DownloadIcon,
   ChevronRightIcon,
 } from "lucide-react";
+import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Iconography",
+  description: "lucide-react sizing, stroke, and color rules for icons in this system.",
+};
 
 const DEMO_ICONS = [
   SearchIcon,

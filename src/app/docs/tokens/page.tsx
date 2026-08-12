@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { CodeBlock } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Colors",
+  description: "Every color, defined once in OKLCH, verified against WCAG AA contrast.",
+};
 
 function Swatch({
   name,

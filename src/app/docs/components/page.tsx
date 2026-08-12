@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { componentCategories, componentRegistry } from "@/lib/component-registry";
+
+export const metadata: Metadata = {
+  title: "Components",
+  description: "Every installed component, what it's for, and where to see it working.",
+};
 
 export default function ComponentsPage() {
   return (

@@ -47,7 +47,7 @@ export function DocsNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-6 text-sm">
+    <div className="flex flex-col gap-6 text-sm">
       {docsNav.map((group) => (
         <div key={group.title} className="flex flex-col gap-1">
           <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
@@ -72,6 +72,6 @@ export function DocsNav() {
           })}
         </div>
       ))}
-    </nav>
+    </div>
   );
 }

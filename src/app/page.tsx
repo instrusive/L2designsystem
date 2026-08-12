@@ -1,6 +1,7 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
 import { Badge } from "@/components/reui/badge";
 import { Alert, AlertTitle, AlertDescription } from "@/components/reui/alert";
@@ -60,6 +61,9 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { DataTable } from "@/components/data-table/base/data-table";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteNav } from "@/components/site-nav";
+import { NavDrawer } from "@/components/site-nav-drawer";
+import { SiteSearch } from "@/components/site-search";
 import {
   Filters,
   createFilter,
@@ -212,30 +216,108 @@ const columns: ColumnDef<Invoice>[] = [
   },
 ];
 
-const sections = [
-  { id: "buttons", label: "Buttons" },
-  { id: "badges", label: "Badges" },
-  { id: "alerts", label: "Alerts" },
-  { id: "forms", label: "Form controls" },
-  { id: "avatars", label: "Avatars" },
-  { id: "tabs", label: "Tabs" },
-  { id: "accordion", label: "Accordion" },
-  { id: "dialog", label: "Dialog" },
-  { id: "feedback", label: "Progress & skeleton" },
-  { id: "overlays", label: "Menu & tooltip" },
-  { id: "data-table", label: "Data table" },
-  { id: "data-table-virtualized", label: "Virtualized table" },
-  { id: "filters", label: "Filters" },
-  { id: "stepper", label: "Stepper" },
-  { id: "empty", label: "Empty state" },
-  { id: "toast", label: "Toast" },
-  { id: "tree", label: "Tree" },
-  { id: "kanban", label: "Kanban" },
-  { id: "rating", label: "Rating" },
-  { id: "number-field", label: "Number field" },
-  { id: "phone-input", label: "Phone input" },
-  { id: "sortable", label: "Sortable" },
+// Same category taxonomy as Explorer's sidebar (componentCategories), applied
+// to Showcase. Anchors (#id) jump to a section already demoed on this page;
+// plain paths (/explorer/slug) go to the Explorer entry for components this
+// page doesn't demo on its own — every registered component reachable in one
+// click either way, not just the ~22 shown inline here.
+const showcaseNavGroups: { category: string; items: { label: string; href: string }[] }[] = [
+  {
+    category: "Primitives",
+    items: [
+      { label: "Buttons", href: "#buttons" },
+      { label: "Badges", href: "#badges" },
+      { label: "Card", href: "/explorer/card" },
+      { label: "Avatars", href: "#avatars" },
+    ],
+  },
+  {
+    category: "Forms",
+    items: [
+      { label: "Form controls", href: "#forms" },
+      { label: "Textarea", href: "/explorer/textarea" },
+      { label: "Combobox", href: "/explorer/combobox" },
+      { label: "Field", href: "/explorer/field" },
+      { label: "Number field", href: "#number-field" },
+      { label: "Phone input", href: "#phone-input" },
+      { label: "Input Group", href: "/explorer/input-group" },
+      { label: "Button Group", href: "/explorer/button-group" },
+    ],
+  },
+  {
+    category: "Feedback",
+    items: [
+      { label: "Alerts", href: "#alerts" },
+      { label: "Toast", href: "#toast" },
+      { label: "Progress & skeleton", href: "#feedback" },
+      { label: "Empty state", href: "#empty" },
+      { label: "Rating", href: "#rating" },
+    ],
+  },
+  {
+    category: "Overlays",
+    items: [
+      { label: "Dialog", href: "#dialog" },
+      { label: "Menu & tooltip", href: "#overlays" },
+    ],
+  },
+  {
+    category: "Navigation",
+    items: [
+      { label: "Tabs", href: "#tabs" },
+      { label: "Accordion", href: "#accordion" },
+      { label: "Stepper", href: "#stepper" },
+    ],
+  },
+  {
+    category: "Data",
+    items: [
+      { label: "Data table", href: "#data-table" },
+      { label: "Virtualized table", href: "#data-table-virtualized" },
+      { label: "Filters", href: "#filters" },
+      { label: "Table (raw)", href: "/explorer/table" },
+      { label: "Tree", href: "#tree" },
+      { label: "Kanban", href: "#kanban" },
+      { label: "Sortable", href: "#sortable" },
+    ],
+  },
+  {
+    category: "Layout",
+    items: [
+      { label: "Scroll Area", href: "/explorer/scroll-area" },
+      { label: "Separator", href: "/explorer/separator" },
+      { label: "Kbd", href: "/explorer/kbd" },
+      { label: "Label", href: "/explorer/label" },
+    ],
+  },
 ];
+
+function ShowcaseSectionNav() {
+  return (
+    <div className="flex flex-col gap-5 text-sm">
+      {showcaseNavGroups.map((group) => (
+        <div key={group.category} className="flex flex-col gap-1">
+          <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            {group.category}
+          </span>
+          {group.items.map((item) => {
+            const linkClassName =
+              "rounded-md px-2 py-1 text-muted-foreground transition-colors hover-only:hover:bg-surface-hover hover-only:hover:text-foreground";
+            return item.href.startsWith("#") ? (
+              <a key={item.href} href={item.href} className={linkClassName}>
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.href} href={item.href} className={linkClassName}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 interface TreeNode {
   name: string;
@@ -421,30 +503,36 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col bg-background">
-      <header className="flex items-center justify-between border-b border-border px-6 py-4">
-        <div>
-          <h1 className="text-2xl font-semibold">
-            L2 <em className="font-serif text-[1.15em] italic">Design System</em>
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Next.js 16 + React 19 + Tailwind v4, built on ReUI
-          </p>
+      <header className="flex items-center justify-between gap-4 border-b border-border px-6 py-4">
+        <div className="flex items-center gap-2">
+          <div className="md:hidden">
+            <NavDrawer>
+              <SiteNav>
+                <ShowcaseSectionNav />
+              </SiteNav>
+            </NavDrawer>
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold">
+              L2 <em className="font-serif text-[1.15em] italic">Design System</em>
+            </h1>
+            <p className="hidden text-sm text-muted-foreground sm:block">
+              Next.js 16 + React 19 + Tailwind v4, built on ReUI
+            </p>
+          </div>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <SiteSearch />
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-6 py-10">
-        <nav className="sticky top-10 hidden h-fit w-44 shrink-0 flex-col gap-1 text-sm md:flex">
-          {sections.map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="rounded-md px-2 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              {s.label}
-            </a>
-          ))}
-        </nav>
+        <aside className="sticky top-10 hidden h-fit w-44 shrink-0 md:block">
+          <SiteNav>
+            <ShowcaseSectionNav />
+          </SiteNav>
+        </aside>
 
         <main className="flex min-w-0 flex-1 flex-col gap-8">
           <Section id="buttons" title="Buttons">
