@@ -1,5 +1,4 @@
 import { docsNav } from "@/components/docs/docs-nav";
-import { componentRegistry } from "@/lib/component-registry";
 
 export interface SearchEntry {
   title: string;
@@ -9,21 +8,21 @@ export interface SearchEntry {
 }
 
 export function getSearchIndex(): SearchEntry[] {
-  const docsEntries: SearchEntry[] = docsNav.flatMap((group) =>
-    group.items.map((item) => ({
+  return docsNav.flatMap((group) => {
+    const topLevel: SearchEntry[] = group.items.map((item) => ({
       title: item.label,
       subtitle: group.title,
       href: item.href,
-      group: "Docs",
-    }))
-  );
-
-  const componentEntries: SearchEntry[] = componentRegistry.map((entry) => ({
-    title: entry.name,
-    subtitle: entry.category,
-    href: `/explorer/${entry.slug}`,
-    group: "Components",
-  }));
-
-  return [...docsEntries, ...componentEntries];
+      group: group.title === "Components" ? "Components" : "Docs",
+    }));
+    const nested: SearchEntry[] = (group.subgroups ?? []).flatMap((subgroup) =>
+      subgroup.items.map((item) => ({
+        title: item.label,
+        subtitle: subgroup.title,
+        href: item.href,
+        group: "Components",
+      }))
+    );
+    return [...topLevel, ...nested];
+  });
 }

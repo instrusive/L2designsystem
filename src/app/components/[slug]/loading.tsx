@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function ExplorerLoading() {
+export default function ComponentDetailLoading() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">

@@ -34,11 +34,8 @@ export default function NotFound() {
             <Button render={<Link href="/" />} nativeButton={false}>
               Home
             </Button>
-            <Button variant="outline" render={<Link href="/docs" />} nativeButton={false}>
-              Docs
-            </Button>
-            <Button variant="outline" render={<Link href="/explorer" />} nativeButton={false}>
-              Explorer
+            <Button variant="outline" render={<Link href="/components" />} nativeButton={false}>
+              Components
             </Button>
           </div>
         </EmptyContent>

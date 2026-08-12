@@ -22,6 +22,35 @@ export default function ChangelogPage() {
       <h2>Unreleased</h2>
       <ul>
         <Entry>
+          Removed the Showcase and Explorer sections entirely — this site is now
+          documentation-only. Every docs page moved up a level (
+          <code>/docs/typography</code> → <code>/typography</code>, and so on), the root
+          URL is now the docs overview, and the sidebar is pinned to the true left edge
+          of the page instead of sitting inside a centered container.
+        </Entry>
+        <Entry>
+          <code>Components</code> now links each entry straight to its source file on
+          GitHub instead of to a live Explorer demo.
+        </Entry>
+      </ul>
+
+      <h2>2026-08-12</h2>
+      <ul>
+        <Entry>
+          Added a <code>⌘K</code> search palette across every docs page, a mobile nav
+          drawer, per-page SEO metadata, a copy button on code blocks, a branded 404
+          page, an auto-generated table of contents, and loading skeletons.
+        </Entry>
+        <Entry>
+          Unified navigation: one shared sidebar (Docs/Explorer/Showcase/GitHub) applied
+          consistently everywhere, including Showcase — which previously had no way back
+          to the rest of the site at all.
+        </Entry>
+      </ul>
+
+      <h2>2026-08-11</h2>
+      <ul>
+        <Entry>
           Added six documentation pages under Foundations/Guidelines/Reference:{" "}
           <code>Typography</code>, <code>Iconography</code>, <code>Spacing &amp; radius</code>,{" "}
           <code>Elevation</code>, <code>Motion</code>, <code>Accessibility</code>,{" "}
@@ -37,6 +66,11 @@ export default function ChangelogPage() {
         <Entry>
           Added <code>text-body-sm</code> (13px) as an opt-in compact body-copy size,
           alongside the existing 14px default.
+        </Entry>
+        <Entry>
+          Fixed a site-wide WCAG contrast sweep: muted text, badge tint colors, and
+          input/card borders were all measured against real rendered pixels (not
+          eyeballed) and corrected where they fell short of 4.5:1/3:1.
         </Entry>
       </ul>
 

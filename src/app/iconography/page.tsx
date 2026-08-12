@@ -96,7 +96,7 @@ export default function IconographyPage() {
         <li>
           <code>text-primary-text</code> — accent use only, sparingly (a selected/active
           indicator), matching the accent-color rule in{" "}
-          <a href="/docs/tokens">Colors</a>.
+          <a href="/tokens">Colors</a>.
         </li>
       </ul>
 

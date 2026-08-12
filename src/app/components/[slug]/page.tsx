@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { componentRegistry } from "@/lib/component-registry";
-import { DemoRenderer } from "@/components/explorer/demo-renderer";
+import { DemoRenderer } from "@/components/component-demos/demo-renderer";
 import { CodeBlock } from "@/components/docs/code-block";
 
 export function generateStaticParams() {
@@ -9,7 +9,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  props: PageProps<"/explorer/[slug]">
+  props: PageProps<"/components/[slug]">
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const entry = componentRegistry.find((c) => c.slug === slug);
@@ -21,7 +21,7 @@ function sourceToImportPath(source: string) {
   return "@/" + source.replace(/^src\//, "").replace(/\.tsx?$/, "");
 }
 
-export default async function ExplorerComponentPage(props: PageProps<"/explorer/[slug]">) {
+export default async function ComponentDetailPage(props: PageProps<"/components/[slug]">) {
   const { slug } = await props.params;
   const entry = componentRegistry.find((c) => c.slug === slug);
 

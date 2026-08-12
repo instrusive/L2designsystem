@@ -105,7 +105,7 @@ import { DataTable } from "@/components/data-table/base/data-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { GripVerticalIcon, SearchIcon } from "lucide-react";
 
-/** Deferred client-only mount, for dnd-kit's SSR hydration-id problem. See /docs/ai-usage. */
+/** Deferred client-only mount, for dnd-kit's SSR hydration-id problem. See /ai-usage. */
 function useClientMounted() {
   const [mounted, setMounted] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -156,8 +156,8 @@ function AvatarDemo() {
 function InputDemo() {
   return (
     <div className="flex max-w-xs flex-col gap-1.5">
-      <Label htmlFor="explorer-input">Email</Label>
-      <Input id="explorer-input" type="email" placeholder="you@example.com" />
+      <Label htmlFor="demo-input">Email</Label>
+      <Input id="demo-input" type="email" placeholder="you@example.com" />
     </div>
   );
 }
@@ -165,8 +165,8 @@ function InputDemo() {
 function TextareaDemo() {
   return (
     <div className="flex max-w-sm flex-col gap-1.5">
-      <Label htmlFor="explorer-textarea">Message</Label>
-      <Textarea id="explorer-textarea" placeholder="Type your message..." />
+      <Label htmlFor="demo-textarea">Message</Label>
+      <Textarea id="demo-textarea" placeholder="Type your message..." />
     </div>
   );
 }
@@ -211,8 +211,8 @@ function ComboboxDemo() {
 function CheckboxDemo() {
   return (
     <div className="flex items-center gap-2">
-      <Checkbox id="explorer-checkbox" defaultChecked />
-      <Label htmlFor="explorer-checkbox">Accept terms and conditions</Label>
+      <Checkbox id="demo-checkbox" defaultChecked />
+      <Label htmlFor="demo-checkbox">Accept terms and conditions</Label>
     </div>
   );
 }
@@ -220,8 +220,8 @@ function CheckboxDemo() {
 function SwitchDemo() {
   return (
     <div className="flex items-center gap-2">
-      <Switch id="explorer-switch" defaultChecked />
-      <Label htmlFor="explorer-switch">Email notifications</Label>
+      <Switch id="demo-switch" defaultChecked />
+      <Label htmlFor="demo-switch">Email notifications</Label>
     </div>
   );
 }
@@ -229,8 +229,8 @@ function SwitchDemo() {
 function FieldDemo() {
   return (
     <Field data-invalid="true" className="max-w-xs">
-      <FieldLabel htmlFor="explorer-field">Username</FieldLabel>
-      <Input id="explorer-field" aria-invalid defaultValue="a" />
+      <FieldLabel htmlFor="demo-field">Username</FieldLabel>
+      <Input id="demo-field" aria-invalid defaultValue="a" />
       <FieldDescription>Must be at least 3 characters.</FieldDescription>
       <FieldError>Username is too short.</FieldError>
     </Field>
@@ -674,13 +674,13 @@ function KbdDemo() {
 function LabelDemo() {
   return (
     <div className="flex items-center gap-2">
-      <Checkbox id="explorer-label" />
-      <Label htmlFor="explorer-label">Subscribe to newsletter</Label>
+      <Checkbox id="demo-label" />
+      <Label htmlFor="demo-label">Subscribe to newsletter</Label>
     </div>
   );
 }
 
-export const explorerDemos: Record<string, React.ComponentType> = {
+export const componentDemos: Record<string, React.ComponentType> = {
   card: CardDemo,
   avatar: AvatarDemo,
   input: InputDemo,

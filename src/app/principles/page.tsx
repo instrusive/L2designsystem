@@ -29,8 +29,8 @@ export default function PrinciplesPage() {
 
       <h2>Verify, don&rsquo;t eyeball</h2>
       <p>
-        Every color pairing in <Link href="/docs/tokens">Colors</Link> has a computed
-        WCAG contrast ratio, not a squint-and-ship judgment call. This one took multiple
+        Every color pairing in <Link href="/tokens">Colors</Link> has a computed WCAG
+        contrast ratio, not a squint-and-ship judgment call. This one took multiple
         passes to get right — status and accent colors failed contrast checks more than
         once before landing at their current values — which is exactly why it&rsquo;s a
         principle and not a one-time fix.
@@ -40,15 +40,16 @@ export default function PrinciplesPage() {
       <p>
         Shadow means exactly one thing here: this element is above the page and can be
         dismissed. Cards, tables, and inputs stay flat; dialogs, menus, and tooltips
-        carry real shadow. See <Link href="/docs/elevation">Elevation</Link> for the full
-        rule and the reasoning behind it.
+        carry real shadow. See <Link href="/elevation">Elevation</Link> for the full rule
+        and the reasoning behind it.
       </p>
 
-      <h2>Real components, not screenshots</h2>
+      <h2>Real components, not mockups</h2>
       <p>
-        Every entry in <Link href="/explorer">Explorer</Link> is a live, interactive
-        instance of the actual component — not a static image of one. If a component
-        can&rsquo;t be demoed working, it&rsquo;s not considered done.
+        Every entry in <Link href="/components">Components</Link> links straight to the
+        actual source file installed in this repo — not a description of an API that
+        doesn&rsquo;t exist, and not a screenshot standing in for real code. If it&rsquo;s
+        documented here, it&rsquo;s something you can open and copy.
       </p>
 
       <h2>Restraint over decoration</h2>
@@ -56,8 +57,8 @@ export default function PrinciplesPage() {
         Near-sharp corners instead of a rounder default scale. Two font weights, not
         four. A serif accent used sparingly enough that reaching for it on a button label
         or a data value is a sign of overuse, not an option — see{" "}
-        <Link href="/docs/typography">Typography</Link>. When in doubt, the plainer
-        choice is usually the right one.
+        <Link href="/typography">Typography</Link>. When in doubt, the plainer choice is
+        usually the right one.
       </p>
     </Prose>
   );

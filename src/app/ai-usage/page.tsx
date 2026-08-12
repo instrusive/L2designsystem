@@ -49,7 +49,7 @@ export default function AiUsagePage() {
   raw colors
 - If it needs a new status color, verify WCAG contrast with real math (see
   CONTRIBUTING.md), don't eyeball it
-- Add a working demo to /explorer, not a static screenshot
+- Add it to the component registry so it shows up on /components
 - Check both light and dark mode in the browser before calling it done`}
       </CodeBlock>
 
@@ -119,7 +119,7 @@ export default function AiUsagePage() {
         <li>Checked in the actual browser, in both light and dark mode.</li>
         <li>
           Any new color pairing has a real contrast ratio computed, not eyeballed — see{" "}
-          <Link href="/docs/tokens">design tokens</Link> for the current verified set.
+          <Link href="/tokens">design tokens</Link> for the current verified set.
         </li>
         <li>No raw hex/rgb color slipped in outside <code>globals.css</code>.</li>
       </ul>

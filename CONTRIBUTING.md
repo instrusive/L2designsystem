@@ -40,7 +40,7 @@ A few repo-wide habits worth calling out:
 2. `npx shadcn@latest add @reui/c-<name>-1` — this pulls the real primitive into `src/components/ui/` or `src/components/reui/` and drops a demo file in `src/components/examples/`.
 3. Read the demo file for the correct composition pattern, then delete it — once the primitive is installed, the example isn't needed.
 4. **Diff `globals.css` after every install.** The CLI has, in the past, appended a second `:root`/`.dark` block instead of merging into the existing one. Run `grep -n "^:root\|^\.dark" src/app/globals.css` — there should be exactly one of each.
-5. Add a demo section to the homepage (`src/app/page.tsx`) or `/explorer` showing it wired to real, working state — not a static screenshot.
+5. Add it to the component registry (`src/lib/component-registry.ts`) so it shows up on `/components`.
 
 ## Commit messages
 

@@ -2,7 +2,7 @@
 
 A component design system built on [Next.js](https://nextjs.org), [Tailwind CSS v4](https://tailwindcss.com), and the [ReUI](https://reui.io) registry (Base UI primitives), themed to match [madebylianna](https://github.com/instrusive/madebylianna)'s portfolio aesthetic — warm neutral palette, JetBrains Mono + Instrument Serif, subtle paper-grain texture, and a punchy red-orange accent.
 
-It's meant to be a real, working foundation you can drop into a portfolio site or prototype — not just a token file. That means: verified WCAG-AA contrast on every color pairing, a fully-featured data table (search, filter, row selection, column visibility, virtualization), and 25+ components with working demos, not just static screenshots.
+It's meant to be a real, working foundation you can drop into a portfolio site or prototype — not just a token file. That means: verified WCAG-AA contrast on every color pairing, a fully-featured data table (search, filter, row selection, column visibility, virtualization), and 37 components you can copy straight from source, not just described in a spec.
 
 ## Quick start
 
@@ -13,14 +13,13 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the full component showcase. `/docs` has installation and usage docs; `/explorer` has isolated per-component pages.
+Open [http://localhost:3000](http://localhost:3000) — the whole site is the docs: installation, theming, a full component reference, and a guide on working with this repo using an AI coding agent.
 
 ## What's inside
 
 - **Design tokens** — colors (OKLCH), radius, fonts, and a fixed paper-grain texture, all theme-aware (light/dark via `next-themes`). See [`src/app/globals.css`](src/app/globals.css).
 - **Components** — Button, Badge, Card, Alert, Dialog, Select, Dropdown Menu, Tabs, Accordion, Filters, Stepper, Empty state, Toast (Sonner), Tree, Kanban, Rating, Number Field, Phone Input, Sortable, and a hand-built TanStack Table v8 data table with search/filter/selection/virtualization.
-- **Docs** (`/docs`) — installation, theming, component reference, and a guide on working with this repo using an AI coding agent.
-- **Explorer** (`/explorer`) — every component in isolation, several with live prop controls.
+- **Docs** (`/`) — installation, theming, a full component reference (`/components`), and a guide on working with this repo using an AI coding agent (`/ai-usage`).
 
 ## Tech stack
 

@@ -53,7 +53,7 @@ export default function SpacingPage() {
       <p>
         Padding follows the same steps: <code>p-3</code> for compact surfaces (menu
         items, table cells), <code>p-4</code>–<code>p-6</code> for cards and dialogs,{" "}
-        <code>px-6 py-4</code> for the docs/explorer header. Reach for these before
+        <code>px-6 py-4</code> for the site header. Reach for these before
         picking an arbitrary value.
       </p>
 

@@ -20,7 +20,7 @@ export default function AccessibilityPage() {
 
       <h2>Color contrast</h2>
       <p>
-        Every color pairing in <Link href="/docs/tokens">Colors</Link> is checked against
+        Every color pairing in <Link href="/tokens">Colors</Link> is checked against
         a real computed WCAG ratio before it ships — solid status colors verified ≥4.5:1
         with white text, <code>-foreground</code> variants verified as text directly on
         the page/card background. This isn&rsquo;t a one-time audit: status and accent
@@ -68,7 +68,7 @@ export default function AccessibilityPage() {
       <ul>
         <li>
           <code>prefers-reduced-motion</code> isn&rsquo;t respected anywhere — see{" "}
-          <Link href="/docs/motion">Motion</Link>.
+          <Link href="/motion">Motion</Link>.
         </li>
         <li>
           Contrast verification is a manual practice, not an automated CI check — nothing

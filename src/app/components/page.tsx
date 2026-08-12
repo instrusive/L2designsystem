@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { componentCategories, componentRegistry } from "@/lib/component-registry";
 
 export const metadata: Metadata = {
   title: "Components",
-  description: "Every installed component, what it's for, and where to see it working.",
+  description: "Every installed component, with a working demo and its source.",
 };
 
 export default function ComponentsPage() {
@@ -14,12 +15,11 @@ export default function ComponentsPage() {
       <h1>Components</h1>
       <p>
         {componentRegistry.length} components across {componentCategories.length}{" "}
-        categories. Click through to <Link href="/explorer">the explorer</Link> for an
-        isolated live view, or open the source path directly.
+        categories. Each has a live demo and a copyable import path.
       </p>
 
       {componentCategories.map((category) => (
-        <div key={category}>
+        <Fragment key={category}>
           <h2>{category}</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {componentRegistry
@@ -27,7 +27,8 @@ export default function ComponentsPage() {
               .map((c) => (
                 <Link
                   key={c.slug}
-                  href={`/explorer/${c.slug}`}
+                  data-slot="card-link"
+                  href={`/components/${c.slug}`}
                   className="rounded-lg border border-border bg-card p-3 no-underline transition-colors hover-only:hover:border-foreground/30"
                 >
                   <div className="text-sm font-medium text-foreground">{c.name}</div>
@@ -35,7 +36,7 @@ export default function ComponentsPage() {
                 </Link>
               ))}
           </div>
-        </div>
+        </Fragment>
       ))}
     </Prose>
   );

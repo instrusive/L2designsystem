@@ -43,8 +43,8 @@ export default function TokensPage() {
         light and dark value, and consumed everywhere through a semantic Tailwind class
         (<code>bg-primary</code>, never a literal hex). Swatches below reflect the
         current theme — toggle light/dark in the header and they&apos;ll update. For
-        radius and font tokens, see <Link href="/docs/spacing">Spacing &amp; radius</Link>{" "}
-        and <Link href="/docs/typography">Typography</Link>.
+        radius and font tokens, see <Link href="/spacing">Spacing &amp; radius</Link>{" "}
+        and <Link href="/typography">Typography</Link>.
       </p>
 
       <h2>Core surfaces</h2>
