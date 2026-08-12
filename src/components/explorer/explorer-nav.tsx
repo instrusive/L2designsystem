@@ -25,9 +25,9 @@ export function ExplorerNav() {
                   key={c.slug}
                   href={href}
                   className={cn(
-                    "rounded-md px-2 py-1 transition-colors",
+                    "rounded-r-md border-l-2 border-transparent px-2.5 py-1 transition-colors",
                     active
-                      ? "bg-surface-active font-medium text-foreground"
+                      ? "border-l-primary-text font-medium text-foreground"
                       : "text-muted-foreground hover-only:hover:bg-surface-hover hover-only:hover:text-foreground"
                   )}
                 >

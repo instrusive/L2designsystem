@@ -63,13 +63,15 @@
   --border: oklch(0.607 0.013 86.8);
   --input: oklch(0.607 0.013 86.8);
   --ring: oklch(0.532 0.185 33.3);
-  /* --secondary/--muted mixed toward --foreground for a clearly-visible
-     "sunken" interactive fill (nav hover/active), without touching the
-     base tokens — those are already load-bearing elsewhere (e.g.
-     text-muted-foreground on bg-secondary in CodeBlock's label bar) at a
-     lightness that can't be darkened without breaking that pairing. */
+  /* --secondary mixed toward --foreground for a clearly-visible "sunken"
+     hover fill, without touching the base token — that's already
+     load-bearing elsewhere (e.g. text-muted-foreground on bg-secondary in
+     CodeBlock's label bar) at a lightness that can't be darkened without
+     breaking that pairing. Nav's persistent "active" state uses a
+     border-l-primary-text indicator instead of a fill — see docs-nav.tsx —
+     since a thin high-contrast accent line reads lighter than a filled
+     block while still clearing 3:1 non-text contrast comfortably. */
   --surface-hover: color-mix(in oklch, var(--secondary), var(--foreground) 12%);
-  --surface-active: color-mix(in oklch, var(--secondary), var(--foreground) 20%);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -167,7 +169,6 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-surface-hover: var(--surface-hover);
-  --color-surface-active: var(--surface-active);
   --color-info-foreground: var(--info-foreground);
   --color-info: var(--info);
   --color-warning-foreground: var(--warning-foreground);
