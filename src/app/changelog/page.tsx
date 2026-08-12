@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 
 export const metadata: Metadata = {
@@ -22,6 +23,15 @@ export default function ChangelogPage() {
       <h2>Unreleased</h2>
       <ul>
         <Entry>
+          Added a remote <Link href="/mcp">MCP server</Link> (<code>/api/mcp</code>) —
+          components, design tokens, and curated guidance rules, queryable by an AI
+          agent directly instead of reading through repo files.
+        </Entry>
+      </ul>
+
+      <h2>2026-08-12</h2>
+      <ul>
+        <Entry>
           Removed the Showcase and Explorer sections entirely — this site is now
           documentation-only. Every docs page moved up a level (
           <code>/docs/typography</code> → <code>/typography</code>, and so on), the root
@@ -29,13 +39,18 @@ export default function ChangelogPage() {
           of the page instead of sitting inside a centered container.
         </Entry>
         <Entry>
-          <code>Components</code> now links each entry straight to its source file on
-          GitHub instead of to a live Explorer demo.
+          Restored all 37 individual component pages Explorer used to own, now living at{" "}
+          <code>/components/[slug]</code> under a new &quot;Components&quot; sidebar
+          section (grouped by category) alongside Getting started/Foundations/Guidelines/
+          Reference — recovered from git history rather than rewritten, so every live
+          demo (Kanban drag-and-drop, the Button/Badge playgrounds, everything) still
+          works exactly as before.
         </Entry>
-      </ul>
-
-      <h2>2026-08-12</h2>
-      <ul>
+        <Entry>
+          Fixed category headings on <code>/components</code> (Primitives, Forms, etc.)
+          rendering with zero spacing or heading weight — they were nested one level too
+          deep to match <code>Prose</code>&apos;s <code>[&amp;&gt;h2]</code> selector.
+        </Entry>
         <Entry>
           Added a <code>⌘K</code> search palette across every docs page, a mobile nav
           drawer, per-page SEO metadata, a copy button on code blocks, a branded 404

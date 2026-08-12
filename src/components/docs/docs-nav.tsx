@@ -49,6 +49,7 @@ export const docsNav: DocsNavGroup[] = [
     title: "Reference",
     items: [
       { href: "/ai-usage", label: "Using with AI" },
+      { href: "/mcp", label: "MCP Server" },
       { href: "/changelog", label: "Changelog" },
     ],
   },
