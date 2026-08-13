@@ -63,7 +63,9 @@ export default function IconographyPage() {
         </a>{" "}
         — no other icon set is used in this system. They&apos;re imported by name (
         <code>SearchIcon</code>, not a generic <code>Icon</code> wrapper) so unused icons
-        get tree-shaken automatically.
+        get tree-shaken automatically. The same icons (the set shown below, plus every
+        icon a real component imports) are also available as real vector nodes in the{" "}
+        <a href="/figma">Figma library</a>, bound to the same color tokens.
       </p>
 
       <h2>Sizes</h2>

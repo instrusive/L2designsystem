@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Isolated Figma plugin project — its own tsconfig/typings (@figma/plugin-typings),
+    // not part of the Next.js app.
+    "figma-plugin/**",
   ]),
 ]);
 

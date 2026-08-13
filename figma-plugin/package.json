@@ -1,0 +1,16 @@
+{
+  "name": "l2-design-system-figma-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Figma plugin that syncs L2 Design System's real tokens and a curated component set into Figma Variables, Text Styles, and component sets.",
+  "scripts": {
+    "build": "node generate-icons.mjs && node build.mjs",
+    "watch": "node generate-icons.mjs && node build.mjs --watch"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.116.0",
+    "esbuild": "^0.25.0",
+    "lucide-static": "^1.31.0",
+    "typescript": "^5"
+  }
+}

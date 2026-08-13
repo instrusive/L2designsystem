@@ -48,8 +48,10 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Reference",
     items: [
+      { href: "/architecture", label: "Architecture" },
       { href: "/ai-usage", label: "Using with AI" },
       { href: "/mcp", label: "MCP Server" },
+      { href: "/figma", label: "Figma Plugin" },
       { href: "/changelog", label: "Changelog" },
     ],
   },

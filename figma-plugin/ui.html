@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: Inter, sans-serif;
+        font-size: 12px;
+        margin: 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-sizing: border-box;
+        height: 100vh;
+      }
+      p {
+        margin: 0;
+        color: #555;
+        line-height: 1.5;
+      }
+      button {
+        background: #18181b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      #log {
+        flex: 1;
+        overflow-y: auto;
+        background: #f4f4f5;
+        border-radius: 6px;
+        padding: 8px;
+        font-family: ui-monospace, monospace;
+        font-size: 11px;
+        white-space: pre-wrap;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Syncs colors, radius, spacing, and typography into Figma Variables/Text
+      Styles, and scaffolds component sets for components that don't exist
+      yet. Safe to re-run.
+    </p>
+    <button id="sync">Sync design system</button>
+    <div id="log"></div>
+    <script>
+      const button = document.getElementById("sync");
+      const logEl = document.getElementById("log");
+
+      button.addEventListener("click", () => {
+        button.disabled = true;
+        logEl.textContent = "";
+        parent.postMessage({ pluginMessage: { type: "sync" } }, "*");
+      });
+
+      window.onmessage = (event) => {
+        const msg = event.data.pluginMessage;
+        if (!msg) return;
+        if (msg.type === "log") {
+          logEl.textContent += msg.message + "\n";
+          logEl.scrollTop = logEl.scrollHeight;
+        }
+        if (msg.type === "done") {
+          button.disabled = false;
+        }
+      };
+    </script>
+  </body>
+</html>

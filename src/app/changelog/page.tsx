@@ -23,6 +23,45 @@ export default function ChangelogPage() {
       <h2>Unreleased</h2>
       <ul>
         <Entry>
+          Added Alert, Progress, Select, and Tabs to the Figma plugin&apos;s curated
+          component set (11 &rarr; 15 components) — Select&apos;s trigger gained a
+          trailing-icon slot the same way Button&apos;s leading one works. Along the way,
+          fixed two real bugs found rebuilding against these: Checkbox/Card/Input/Textarea
+          radii didn&apos;t match their real Tailwind classes (guessed instead of verified
+          against source), and both individual components <em>and</em> the component set{" "}
+          <code>combineAsVariants()</code> produces had <code>clipsContent</code> defaulting
+          true, clipping borders.
+        </Entry>
+        <Entry>
+          Reworked the Figma plugin&apos;s canvas layout — components now lay out left to
+          right, one column per component type, each wrapped in a dashed purple rectangle
+          so the boundary between types is obvious at a glance (previously stacked top to
+          bottom with no visual grouping).
+        </Entry>
+        <Entry>
+          Wired up the Figma plugin&apos;s Button component with a working{" "}
+          <code>Icon</code> variant (<code>none</code> / <code>leading</code>) — places a
+          real instance of the Icon component set inside the button, resized per{" "}
+          <code>Size</code> and recolored to match each variant&apos;s text color.
+        </Entry>
+        <Entry>
+          Added an <Link href="/architecture">Architecture</Link> page — a diagram of how
+          the doc site, MCP server, and Figma plugin all read from the same source-of-truth
+          files in <code>src/lib/</code>, plus the separate (dashed) diagnostic path used to
+          debug a live Figma file over its REST API.
+        </Entry>
+        <Entry>
+          Added a <Link href="/figma">Figma plugin</Link> (<code>figma-plugin/</code>) —
+          code → Figma, turning this system&apos;s real tokens (colors, radius, spacing,
+          typography) into Figma Variables and Text Styles with Light/Dark modes, a
+          curated <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer">Lucide</a>{" "}
+          icon set built as real Figma vector nodes (same library <code>lucide-react</code>{" "}
+          already provides to the real components), and a curated set of components
+          (Button, Badge, Card, Avatar, Input, Textarea, Checkbox, Switch, Label,
+          Separator, Kbd) as Figma component sets. Re-runnable: tokens stay in sync,
+          existing icons/components are left untouched.
+        </Entry>
+        <Entry>
           Added a remote <Link href="/mcp">MCP server</Link> (<code>/api/mcp</code>) —
           components, design tokens, and curated guidance rules, queryable by an AI
           agent directly instead of reading through repo files.
