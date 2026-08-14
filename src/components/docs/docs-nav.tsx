@@ -1,9 +1,11 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { componentCategories, componentRegistry } from "@/lib/component-registry";
+import { Separator } from "@/components/ui/separator";
 
 export interface DocsNavGroup {
   title: string;
@@ -78,23 +80,26 @@ function NavLink({ href, label }: { href: string; label: string }) {
 export function DocsNav() {
   return (
     <div className="flex flex-col gap-6 text-sm">
-      {docsNav.map((group) => (
-        <div key={group.title} className="flex flex-col gap-1">
-          <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-            {group.title}
-          </span>
-          {group.items.map((item) => (
-            <NavLink key={item.href} href={item.href} label={item.label} />
-          ))}
-          {group.subgroups?.map((subgroup) => (
-            <div key={subgroup.title} className="mt-2 flex flex-col gap-1">
-              <span className="px-2.5 text-xs text-muted-foreground">{subgroup.title}</span>
-              {subgroup.items.map((item) => (
-                <NavLink key={item.href} href={item.href} label={item.label} />
-              ))}
-            </div>
-          ))}
-        </div>
+      {docsNav.map((group, i) => (
+        <Fragment key={group.title}>
+          {i > 0 && <Separator />}
+          <div className="flex flex-col gap-1">
+            <span className="px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+              {group.title}
+            </span>
+            {group.items.map((item) => (
+              <NavLink key={item.href} href={item.href} label={item.label} />
+            ))}
+            {group.subgroups?.map((subgroup) => (
+              <div key={subgroup.title} className="mt-2 flex flex-col gap-1">
+                <span className="px-2.5 text-xs text-muted-foreground">{subgroup.title}</span>
+                {subgroup.items.map((item) => (
+                  <NavLink key={item.href} href={item.href} label={item.label} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </Fragment>
       ))}
     </div>
   );
