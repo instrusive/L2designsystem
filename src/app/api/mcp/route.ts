@@ -125,7 +125,7 @@ const handler = createMcpHandler(
       {
         title: "Get design guidance",
         description:
-          "Get L2 Design System's written guidance and rules — principles, accessibility, elevation, motion, iconography, or spacing/radius conventions. Terse, actionable rules meant for building things that fit this system, not full documentation prose.",
+          "Get L2 Design System's written guidance and rules: principles, accessibility, elevation, motion, iconography, or spacing/radius conventions. Terse, actionable rules meant for building things that fit this system, not full documentation prose.",
         inputSchema: z.object({
           topic: z.enum(guidanceTopics).default("all").describe("Which guidance topic to return. 'all' returns every topic."),
         }),

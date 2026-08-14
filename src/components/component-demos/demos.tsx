@@ -118,7 +118,7 @@ function CardDemo() {
     <Card className="max-w-sm">
       <CardHeader>
         <CardTitle>Flat, borderless surface</CardTitle>
-        <CardDescription>No shadow, no ring — matches the portfolio&apos;s cards.</CardDescription>
+        <CardDescription>No shadow, no ring: matches the portfolio&apos;s cards.</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">

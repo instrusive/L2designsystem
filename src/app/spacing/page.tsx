@@ -35,20 +35,20 @@ export default function SpacingPage() {
     <Prose className="max-w-4xl">
       <h1>Spacing &amp; radius</h1>
       <p>
-        Spacing uses Tailwind&apos;s default scale unmodified — no custom{" "}
+        Spacing uses Tailwind&apos;s default scale unmodified: no custom{" "}
         <code>--spacing</code> override in <code>globals.css</code>. The values below are
         the ones actually in use across the component library, not the full scale.
       </p>
 
       <h2>Spacing in practice</h2>
       <div className="flex flex-col">
-        <SpaceRow token="gap-1" px="4px — icon-to-label inside a control" />
-        <SpaceRow token="gap-1.5" px="6px — tight clusters (badge + icon)" />
-        <SpaceRow token="gap-2" px="8px — default control internal spacing" />
-        <SpaceRow token="gap-3" px="12px — related field groups" />
-        <SpaceRow token="gap-4" px="16px — default grid/flex spacing" />
-        <SpaceRow token="gap-6" px="24px — section-level spacing" />
-        <SpaceRow token="gap-8" px="32px — page-level layout blocks" />
+        <SpaceRow token="gap-1" px="4px, icon-to-label inside a control" />
+        <SpaceRow token="gap-1.5" px="6px, tight clusters (badge + icon)" />
+        <SpaceRow token="gap-2" px="8px, default control internal spacing" />
+        <SpaceRow token="gap-3" px="12px, related field groups" />
+        <SpaceRow token="gap-4" px="16px, default grid/flex spacing" />
+        <SpaceRow token="gap-6" px="24px, section-level spacing" />
+        <SpaceRow token="gap-8" px="32px, page-level layout blocks" />
       </div>
       <p>
         Padding follows the same steps: <code>p-3</code> for compact surfaces (menu
@@ -59,11 +59,11 @@ export default function SpacingPage() {
 
       <h2>Radius</h2>
       <p>
-        Base <code>--radius</code> is 0.25rem — deliberately subtle, near-sharp corners
+        Base <code>--radius</code> is 0.25rem, deliberately subtle, near-sharp corners
         rather than the rounder scale most shadcn projects ship with. Everything from{" "}
         <code>rounded-sm</code> through <code>rounded-2xl</code> is derived from this one
         token in <code>globals.css</code>. True pill shapes (Badge, Switch, Avatar,
-        Stepper) don&apos;t come from this scale at all — they use{" "}
+        Stepper) don&apos;t come from this scale at all. They use{" "}
         <code>rounded-full</code> directly, so changing the base radius won&apos;t affect
         them.
       </p>
@@ -78,10 +78,10 @@ export default function SpacingPage() {
 
       <h2>Using these tokens</h2>
       <CodeBlock label="tsx">
-        {`// Good — steps on the shared scale
+        {`// Good: steps on the shared scale
 <div className="flex flex-col gap-4 rounded-lg p-4" />
 
-// Bad — arbitrary values that don't line up with anything else on the page
+// Bad: arbitrary values that don't line up with anything else on the page
 <div className="flex flex-col gap-[13px] rounded-[7px] p-[18px]" />`}
       </CodeBlock>
     </Prose>

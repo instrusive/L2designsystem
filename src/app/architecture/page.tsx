@@ -24,9 +24,9 @@ export default function ArchitecturePage() {
     <Prose className="max-w-3xl">
       <h1>Architecture</h1>
       <p>
-        Three hand-maintained files in <code>src/lib/</code> — mirroring{" "}
-        <code>globals.css</code> and this repo&rsquo;s docs pages by hand, not parsed from
-        them — are the only place this design system&rsquo;s tokens and component list
+        Three hand-maintained files in <code>src/lib/</code>, mirroring{" "}
+        <code>globals.css</code> and this repo&rsquo;s docs pages by hand rather than parsed
+        from them, are the only place this design system&rsquo;s tokens and component list
         actually live. Everything downstream reads <strong>from</strong> them; nothing
         downstream is a second copy that can drift on its own. Below is where each of the
         three consumers actually goes: the doc site you&rsquo;re reading right now, the MCP
@@ -41,7 +41,7 @@ export default function ArchitecturePage() {
               viewBox="0 0 1440 760"
               className="block h-auto w-full min-w-[900px]"
               role="img"
-              aria-label="Diagram showing design-tokens.ts, component-registry.ts, and agent-guidance.ts as the single source of truth, read by three separate consumers — the Next.js doc site, the MCP server, and the Figma plugin — with a separate dashed diagnostic path where Claude Code uses a Figma personal access token to read the live Figma file's REST API for debugging."
+              aria-label="Diagram showing design-tokens.ts, component-registry.ts, and agent-guidance.ts as the single source of truth, read by three separate consumers (the Next.js doc site, the MCP server, and the Figma plugin), with a separate dashed diagnostic path where Claude Code uses a Figma personal access token to read the live Figma file's REST API for debugging."
             >
               <defs>
                 <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -54,7 +54,7 @@ export default function ArchitecturePage() {
 
               {/* Source of truth band */}
               <rect className={SOURCE_BAND} x="40" y="40" width="1360" height="110" rx="6" strokeWidth="1.25" />
-              <text className={BAND_LABEL} x="64" y="64">SOURCE OF TRUTH — src/</text>
+              <text className={BAND_LABEL} x="64" y="64">SOURCE OF TRUTH: src/</text>
               <rect className={SOURCE_PILL} x="64" y="84" width="308" height="42" rx="4" strokeWidth="1" />
               <text className={PILL_LABEL} x="218" y="110" textAnchor="middle">globals.css</text>
               <rect className={SOURCE_PILL} x="390" y="84" width="308" height="42" rx="4" strokeWidth="1" />
@@ -105,7 +105,7 @@ export default function ArchitecturePage() {
 
               <line className={FLOW_LINE} x1="1185" y1="300" x2="1185" y2="318" strokeWidth="1.4" />
               <line className={FLOW_LINE} x1="1185" y1="334" x2="1185" y2="347" strokeWidth="1.4" markerEnd="url(#arch-arrow)" />
-              <text className={ARROW_LABEL} x="1185" y="328" textAnchor="middle">manual run — Plugin API</text>
+              <text className={ARROW_LABEL} x="1185" y="328" textAnchor="middle">manual run, Plugin API</text>
 
               {/* Surface row */}
               <rect className={NODE_RECT} x="40" y="350" width="426" height="90" rx="4" strokeWidth="1.25" />
@@ -150,7 +150,7 @@ export default function ArchitecturePage() {
               <text className={BOX_SUB} x="1185" y="562" textAnchor="middle">Icon set · Component sets</text>
 
               {/* Diagnostic side channel */}
-              <text className={SECTION_EYEBROW} x="40" y="638">DIAGNOSTIC PATH — MANUAL, OCCASIONAL</text>
+              <text className={SECTION_EYEBROW} x="40" y="638">DIAGNOSTIC PATH: MANUAL, OCCASIONAL</text>
 
               <rect className={SIDE_RECT} x="200" y="654" width="240" height="66" rx="4" strokeWidth="1" strokeDasharray="3 3" />
               <text className={BOX_TITLE} x="320" y="692" textAnchor="middle" style={{ fontSize: "13px" }}>Claude Code</text>
@@ -176,35 +176,35 @@ export default function ArchitecturePage() {
           One shared source, three independent readers. The doc site and MCP server read
           the <code>.ts</code> files directly at request time; the Figma plugin reads them
           at build time via esbuild, then runs separately inside Figma itself, since only
-          the Figma Plugin API — not Figma&rsquo;s REST API — can create Variables, Text
+          the Figma Plugin API (not Figma&rsquo;s REST API) can create Variables, Text
           Styles, and Components from nothing. The dashed path at the bottom is unrelated
           to that sync: it&rsquo;s how a live Figma file actually got debugged, by reading
           its real JSON back out over the REST API with a personal access token.
         </figcaption>
       </figure>
 
-      <h2>Reference — where each piece actually lives</h2>
+      <h2>Reference: where each piece actually lives</h2>
       <ul>
         <li>
-          <strong>Source of truth</strong> — <code>src/lib/design-tokens.ts</code>,{" "}
+          <strong>Source of truth</strong>: <code>src/lib/design-tokens.ts</code>,{" "}
           <code>src/lib/component-registry.ts</code>, <code>src/lib/agent-guidance.ts</code>
         </li>
         <li>
-          <strong>Doc site</strong> — <code>src/app/**</code>, the unified docs site rooted
+          <strong>Doc site</strong>: <code>src/app/**</code>, the unified docs site rooted
           at <code>/</code>
         </li>
         <li>
-          <strong>MCP server</strong> — <code>src/app/api/mcp/route.ts</code>, documented at{" "}
+          <strong>MCP server</strong>: <code>src/app/api/mcp/route.ts</code>, documented at{" "}
           <a href="/mcp">/mcp</a>
         </li>
         <li>
-          <strong>Figma plugin</strong> — <code>figma-plugin/</code>: <code>src/code.ts</code>,{" "}
+          <strong>Figma plugin</strong>. <code>figma-plugin/</code>: <code>src/code.ts</code>,{" "}
           <code>variables.ts</code>, <code>text-styles.ts</code>, <code>icons.ts</code>,{" "}
           <code>components.ts</code>, plus its own <code>component-specs.ts</code> and{" "}
           <code>icons.json</code>; documented at <a href="/figma">/figma</a>
         </li>
         <li>
-          <strong>Diagnostic path</strong> — the Figma REST API (
+          <strong>Diagnostic path</strong>: the Figma REST API (
           <code>api.figma.com/v1/files/...</code>) via a personal access token; see{" "}
           <code>figma-plugin/TROUBLESHOOTING.md</code>
         </li>

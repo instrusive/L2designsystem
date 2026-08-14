@@ -14,7 +14,7 @@ export default function FigmaPage() {
       <h1>Figma Plugin</h1>
       <p>
         This repo ships a Figma plugin that turns its real, current tokens and a curated
-        set of components into a Figma library — <strong>code → Figma</strong>, not the
+        set of components into a Figma library: <strong>code → Figma</strong>, not the
         reverse. It reads directly from{" "}
         <code>src/lib/design-tokens.ts</code> and <code>src/lib/component-registry.ts</code>{" "}
         (the same files the <Link href="/mcp">MCP server</Link> reads from), so there&rsquo;s
@@ -24,9 +24,9 @@ export default function FigmaPage() {
       <h2>Why a plugin, not the Figma API</h2>
       <p>
         Figma&rsquo;s REST API is read-heavy: it can create or update Variables, but it
-        cannot create frames, auto-layout, or components — there&rsquo;s no &ldquo;create a
+        cannot create frames, auto-layout, or components. There&rsquo;s no &ldquo;create a
         node&rdquo; REST endpoint, and no way to create a brand-new file from nothing. Only
-        the Figma <strong>Plugin API</strong> — code that runs inside Figma itself — can
+        the Figma <strong>Plugin API</strong> (code that runs inside Figma itself) can
         build real component structures. That also means no Figma API token or OAuth setup
         is needed, just Figma Desktop and this plugin.
       </p>
@@ -46,14 +46,14 @@ npm run build`}
       <h2>What it syncs</h2>
       <ul>
         <li>
-          <strong>Colors, radius, spacing, typography</strong> — always kept in sync. A
+          <strong>Colors, radius, spacing, typography</strong>: always kept in sync. A
           Figma Variable Collection with <strong>Light</strong> and <strong>Dark</strong>{" "}
           modes (mirroring <code>:root</code>/<code>.dark</code>), plus Text Styles for the
           type scale. Re-running updates existing Variables/Styles in place instead of
-          duplicating them — this is meant to be re-run after token changes, not used once.
+          duplicating them. This is meant to be re-run after token changes, not used once.
         </li>
         <li>
-          <strong>Icons</strong> — a single &ldquo;Icon&rdquo; component set built from{" "}
+          <strong>Icons</strong>: a single &ldquo;Icon&rdquo; component set built from{" "}
           <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer">Lucide</a>,
           the same library <code>lucide-react</code> already provides to the real components
           in this codebase, so Figma and code render the same shapes. The curated list
@@ -63,23 +63,23 @@ npm run build`}
           to the <code>foreground</code> color Variable.
         </li>
         <li>
-          <strong>Components</strong> — a curated set of purely-visual primitives: Button,
+          <strong>Components</strong>. A curated set of purely-visual primitives: Button,
           Badge, Card, Avatar, Input, Textarea, Checkbox, Switch, Label, Separator, Kbd,
           Alert, Progress, Select, Tabs, each built as a Figma component set with variant
-          properties matching their real props, laid out left to right on the canvas — one
+          properties matching their real props, laid out left to right on the canvas: one
           column per component type, each wrapped in a dashed purple rectangle so the
-          boundary between types is obvious at a glance. Only created once — if a component
+          boundary between types is obvious at a glance. Only created once. If a component
           set already exists, re-running leaves it alone, since it may have been
           hand-tweaked in Figma. Compositions and heavily interactive components (Data
           Table, Kanban, Tree, Dialog, ...) aren&rsquo;t included; assemble those from the
           primitives, or extend <code>figma-plugin/src/component-specs.ts</code>. Some of
-          the newer ones are deliberately partial — Select is only its trigger&rsquo;s
+          the newer ones are deliberately partial: Select is only its trigger&rsquo;s
           closed state, Tabs is only its trigger&rsquo;s active/inactive states, not the
-          full <code>TabsList</code> — see <code>figma-plugin/README.md</code> for the
+          full <code>TabsList</code>. See <code>figma-plugin/README.md</code> for the
           complete list of what&rsquo;s simplified and why.
         </li>
         <li>
-          <strong>Icon instances inside components</strong> — Button has a working{" "}
+          <strong>Icon instances inside components</strong>: Button has a working{" "}
           <code>Icon</code> variant (<code>none</code> / <code>leading</code>) matching the
           documented <code>PlusIcon</code> with <code>data-icon=&quot;inline-start&quot;</code>{" "}
           example, and Select places a trailing chevron the same way. Both resize the icon
@@ -94,7 +94,7 @@ npm run build`}
         <code>figma-plugin/src/code.ts</code> imports directly from{" "}
         <code>src/lib/design-tokens.ts</code> and <code>src/lib/component-registry.ts</code>{" "}
         at build time. <code>figma-plugin/src/component-specs.ts</code> is the one
-        genuinely hand-curated file — Tailwind classes don&rsquo;t auto-translate into
+        genuinely hand-curated file: Tailwind classes don&rsquo;t auto-translate into
         Figma auto-layout, so each component&rsquo;s variant axes and Figma structure are
         authored once by hand, the same way <code>design-tokens.ts</code> mirrors{" "}
         <code>globals.css</code> instead of parsing it. Full details in{" "}

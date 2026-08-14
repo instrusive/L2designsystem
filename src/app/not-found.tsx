@@ -25,7 +25,7 @@ export default function NotFound() {
           </EmptyMedia>
           <EmptyTitle>Page not found</EmptyTitle>
           <EmptyDescription>
-            Whatever you were looking for isn&rsquo;t at this address — it may have moved, or
+            Whatever you were looking for isn&rsquo;t at this address. It may have moved, or
             the link might be off.
           </EmptyDescription>
         </EmptyHeader>

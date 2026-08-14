@@ -54,7 +54,7 @@ export const componentRegistry: ComponentEntry[] = [
     slug: "select",
     name: "Select",
     category: "Forms",
-    description: "Base UI Select wrapper — trigger, popup, items, groups.",
+    description: "Base UI Select wrapper: trigger, popup, items, groups.",
     source: "src/components/ui/select.tsx",
   },
   {
@@ -170,7 +170,7 @@ export const componentRegistry: ComponentEntry[] = [
     slug: "dropdown-menu",
     name: "Dropdown Menu",
     category: "Overlays",
-    description: "Menu with items, checkbox items, groups, and submenus — items must be wrapped in a group for labels.",
+    description: "Menu with items, checkbox items, groups, and submenus; items must be wrapped in a group for labels.",
     source: "src/components/ui/dropdown-menu.tsx",
   },
   {
@@ -209,7 +209,7 @@ export const componentRegistry: ComponentEntry[] = [
     slug: "data-table",
     name: "Data Table",
     category: "Data",
-    description: "TanStack Table v8 wrapper — sorting, pagination, global search, column filters, row selection, column visibility, and optional virtualization for large datasets.",
+    description: "TanStack Table v8 wrapper: sorting, pagination, global search, column filters, row selection, column visibility, and optional virtualization for large datasets.",
     source: "src/components/data-table/base/data-table.tsx",
   },
   {

@@ -82,8 +82,8 @@ export function ButtonPlayground() {
       </div>
       {isIconOnly && (
         <p className="text-xs text-muted-foreground">
-          Icon-only buttons (size=&quot;icon&quot;) always show a single centered icon —
-          leading/trailing placement doesn&apos;t apply.
+          Icon-only buttons (size=&quot;icon&quot;) always show a single centered icon.
+          Leading/trailing placement doesn&apos;t apply.
         </p>
       )}
 

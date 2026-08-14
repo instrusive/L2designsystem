@@ -20,32 +20,32 @@ export default function ElevationPage() {
 
       <h2>Flat, always</h2>
       <p>
-        Static content surfaces never carry a shadow — Card, Table, Input, Tabs. They sit
+        Static content surfaces never carry a shadow: Card, Table, Input, Tabs. They sit
         directly on the page background with a <code>border-border</code> hairline at
         most.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-border bg-card p-4 text-sm text-card-foreground">
-          Card — border only, no shadow
+          Card: border only, no shadow
         </div>
         <div className="rounded-lg border border-border bg-background p-4 text-sm text-muted-foreground">
-          Input surface — border only, no shadow
+          Input surface: border only, no shadow
         </div>
       </div>
 
       <h2>Floating, deliberately</h2>
       <p>
-        Anything that appears <em>above</em> the page and can be dismissed — Dialog,
-        Select, DropdownMenu, Combobox, Tooltip, Popover — keeps a real shadow. That
+        Anything that appears <em>above</em> the page and can be dismissed (Dialog,
+        Select, DropdownMenu, Combobox, Tooltip, Popover) keeps a real shadow. That
         mirrors the source portfolio, which reserves shadow for its chat composer bar
         rather than static content.
       </p>
       <div className="flex flex-wrap items-center gap-6">
         <div className="rounded-xl border border-border bg-card p-4 text-sm shadow-md">
-          Dialog-style surface — shadow-md
+          Dialog-style surface: shadow-md
         </div>
         <div className="rounded-lg border border-border bg-popover p-3 text-sm shadow-lg">
-          Popover-style surface — shadow-lg
+          Popover-style surface: shadow-lg
         </div>
       </div>
 
@@ -56,10 +56,10 @@ export default function ElevationPage() {
         shadow. Dismissible overlay → shadow is correct.
       </p>
       <CodeBlock label="tsx">
-        {`// Static surface — flat
+        {`// Static surface: flat
 <div className="rounded-xl border border-border bg-card p-4" />
 
-// Floating overlay (Dialog/Select/DropdownMenu/Tooltip/Popover) — shadow is correct here
+// Floating overlay (Dialog/Select/DropdownMenu/Tooltip/Popover): shadow is correct here
 <div className="rounded-xl border border-border bg-card p-4 shadow-md" />`}
       </CodeBlock>
     </Prose>

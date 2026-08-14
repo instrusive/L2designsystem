@@ -42,7 +42,7 @@ export default function TokensPage() {
         Every color is defined once in OKLCH in <code>src/app/globals.css</code>, with a
         light and dark value, and consumed everywhere through a semantic Tailwind class
         (<code>bg-primary</code>, never a literal hex). Swatches below reflect the
-        current theme — toggle light/dark in the header and they&apos;ll update. For
+        current theme. Toggle light/dark in the header and they&apos;ll update. For
         radius and font tokens, see <Link href="/spacing">Spacing &amp; radius</Link>{" "}
         and <Link href="/typography">Typography</Link>.
       </p>
@@ -57,7 +57,7 @@ export default function TokensPage() {
 
       <h2>Accent</h2>
       <p>
-        The portfolio&apos;s actual brand color — used for primary buttons, focus rings, and
+        The portfolio&apos;s actual brand color, used for primary buttons, focus rings, and
         the &quot;Default&quot; badge. <code>--primary-text</code> is the same hue at a lightness
         safe to use directly as link/icon text (the solid-fill value fails contrast as
         text in dark mode).
@@ -75,7 +75,7 @@ export default function TokensPage() {
       <p>
         Each has a solid form (paired with white text, verified ≥4.5:1) and a{" "}
         <code>-foreground</code> form (that hue&apos;s text-safe lightness, for use directly
-        on the page/card background — outline badges, alert icons, error text).
+        on the page/card background: outline badges, alert icons, error text).
       </p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Swatch name="success" className="bg-success" />
@@ -98,15 +98,15 @@ export default function TokensPage() {
       <p>
         A fixed, theme-aware dot-grain overlay (<code>body::before</code> in{" "}
         <code>globals.css</code>) gives the background a subtle paper feel. It&apos;s
-        intentionally faint — don&apos;t expect it to be obvious in a screenshot.
+        intentionally faint. Don&apos;t expect it to be obvious in a screenshot.
       </p>
 
       <h2>Using tokens in your own components</h2>
       <CodeBlock label="tsx">
-        {`// Good — resolves through the token, themes automatically
+        {`// Good: resolves through the token, themes automatically
 <div className="bg-card text-card-foreground border border-border" />
 
-// Bad — breaks dark mode, bypasses the contrast verification above
+// Bad: breaks dark mode, bypasses the contrast verification above
 <div style={{ background: "#f2efe8", color: "#0f0f0f" }} />`}
       </CodeBlock>
     </Prose>
