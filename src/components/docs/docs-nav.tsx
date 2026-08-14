@@ -88,7 +88,7 @@ export function DocsNav() {
           ))}
           {group.subgroups?.map((subgroup) => (
             <div key={subgroup.title} className="mt-2 flex flex-col gap-1">
-              <span className="px-2.5 text-xs text-muted-foreground/70">{subgroup.title}</span>
+              <span className="px-2.5 text-xs text-muted-foreground">{subgroup.title}</span>
               {subgroup.items.map((item) => (
                 <NavLink key={item.href} href={item.href} label={item.label} />
               ))}

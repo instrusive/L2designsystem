@@ -23,6 +23,15 @@ export default function ChangelogPage() {
       <h2>Unreleased</h2>
       <ul>
         <Entry>
+          Fixed a real WCAG failure in the sidebar: category labels under
+          &quot;Components&quot; (Primitives, Forms, Feedback, ...) used{" "}
+          <code>text-muted-foreground/70</code> — an extra 70% opacity stacked on top
+          of a token already tuned to just clear 4.5:1, dropping the effective
+          contrast to ~2.8:1. The token itself was never the problem
+          (<code>--muted-foreground</code> alone measures 4.9:1); removed the opacity
+          modifier so the label uses the token at full, compliant strength.
+        </Entry>
+        <Entry>
           Lightened <code>--background</code> and <code>--card</code> (light mode
           only, +0.02 OKLCH lightness) for an airier paper feel. Verified first: light
           mode gains contrast headroom across the board (text, borders, links, status
