@@ -11,9 +11,9 @@ export interface ColorToken {
 }
 
 export const colorTokens: ColorToken[] = [
-  { name: "background", light: "oklch(0.922 0.010 87.5)", dark: "oklch(0.163 0.002 106.6)", usage: "Page background — warm off-white paper in light mode." },
+  { name: "background", light: "oklch(0.942 0.010 87.5)", dark: "oklch(0.163 0.002 106.6)", usage: "Page background — warm off-white paper in light mode." },
   { name: "foreground", light: "oklch(0.168 0 89.9)", dark: "oklch(0.931 0.014 88.7)", usage: "Default text color." },
-  { name: "card", light: "oklch(0.953 0.010 87.5)", dark: "oklch(0.301 0 89.9)", usage: "Card/popover surface — deliberately flat, no border or shadow." },
+  { name: "card", light: "oklch(0.973 0.010 87.5)", dark: "oklch(0.301 0 89.9)", usage: "Card/popover surface — deliberately flat, no border or shadow." },
   { name: "primary", light: "oklch(0.532 0.185 33.3)", dark: "oklch(0.56 0.194 35.2)", usage: "Brand accent (red-orange). Solid fills — buttons, focus rings, the default badge." },
   { name: "primary-foreground", light: "oklch(1 0 0)", dark: "oklch(1 0 0)", usage: "Text/icon color on top of a solid --primary fill (Button's default variant, the default Badge)." },
   { name: "primary-text", light: "oklch(0.497 0.185 33.3)", dark: "oklch(0.742 0.194 35.2)", usage: "Primary's hue at a lightness verified for use AS text (links, icons) directly on background/card — the solid-fill --primary value fails contrast as text, especially in dark mode." },

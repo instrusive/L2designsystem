@@ -23,6 +23,15 @@ export default function ChangelogPage() {
       <h2>Unreleased</h2>
       <ul>
         <Entry>
+          Lightened <code>--background</code> and <code>--card</code> (light mode
+          only, +0.02 OKLCH lightness) for an airier paper feel. Verified first: light
+          mode gains contrast headroom across the board (text, borders, links, status
+          colors), but dark mode&apos;s <code>--card</code> was already at its ceiling
+          against <code>--border</code> — it can move at most 0.004 before that pairing
+          drops under the 3:1 floor — so dark mode is untouched this round. See{" "}
+          <Link href="/tokens">Colors</Link> for current values.
+        </Entry>
+        <Entry>
           Added Alert, Progress, Select, and Tabs to the Figma plugin&apos;s curated
           component set (11 &rarr; 15 components) — Select&apos;s trigger gained a
           trailing-icon slot the same way Button&apos;s leading one works. Along the way,

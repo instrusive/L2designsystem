@@ -16,11 +16,18 @@
 
 :root {
   --radius: 0.25rem;
-  --background: oklch(0.922 0.010 87.5);
+  /* Both bumped +0.02 lightness (same hue/chroma) for a lighter "paper"
+     feel — verified this only improves contrast in light mode (text,
+     borders, links, status colors all gain headroom when the surface
+     lightens under fixed-darkness foreground colors). Dark mode's
+     equivalents are deliberately left untouched: --card there is already
+     at its ceiling against --border (can move <=0.004 before that pairing
+     drops under the 3:1 floor), so lightening it isn't safe the same way. */
+  --background: oklch(0.942 0.010 87.5);
   --foreground: oklch(0.168 0 89.9);
-  --card: oklch(0.953 0.010 87.5);
+  --card: oklch(0.973 0.010 87.5);
   --card-foreground: oklch(0.168 0 89.9);
-  --popover: oklch(0.953 0.010 87.5);
+  --popover: oklch(0.973 0.010 87.5);
   --popover-foreground: oklch(0.168 0 89.9);
   --primary: oklch(0.532 0.185 33.3);
   --primary-foreground: oklch(1 0 0);
@@ -77,7 +84,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.953 0.010 87.5);
+  --sidebar: oklch(0.973 0.010 87.5);
   --sidebar-foreground: oklch(0.168 0 89.9);
   --sidebar-primary: oklch(0.532 0.185 33.3);
   --sidebar-primary-foreground: oklch(1 0 0);
