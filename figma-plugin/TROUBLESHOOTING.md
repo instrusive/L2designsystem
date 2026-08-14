@@ -144,6 +144,35 @@ Neither of these had an error message — both were "the code ran fine, the
 result was just visually wrong," which is exactly the case this file's
 REST-API technique is for.
 
+## A workflow bug, not a Figma API bug: forgetting to rebuild after editing shared source
+
+`code.ts` imports `../src/lib/design-tokens.ts` and
+`../src/lib/component-registry.ts` directly — that's the whole point, one
+source of truth instead of a copy that drifts. But that import is resolved
+at **esbuild bundle time**, not at Sync-run time. Editing
+`design-tokens.ts` and rebuilding/testing the *main Next.js app* does
+nothing to `figma-plugin/code.js` — it's a separate bundle that only
+picks up the change on its own `npm run build`.
+
+This actually happened: a "lighten the background/card surfaces" change
+edited `design-tokens.ts`, the main app was rebuilt and verified, but
+`figma-plugin` wasn't — so its bundled `code.js` kept shipping the old
+lightness values for hours. Anyone who ran Sync in that window got the
+stale values pushed into their file's `background`/`card` Variables,
+silently — no error, and the plugin's own idempotency logic (Variables
+always update in place) meant it looked like a normal, successful sync.
+Caught by the same REST-API diffing technique as everything else here:
+pulling a node's resolved fill color and comparing it against what the
+*current* token value should be.
+
+**Takeaway**: any edit to `src/lib/design-tokens.ts` or
+`src/lib/component-registry.ts` needs **two** rebuilds, not one — the
+main app (`npm run build` at the repo root) and the plugin
+(`cd figma-plugin && npm run build`) are separate bundles with no
+automatic link between them. Get in the habit of rebuilding both
+whenever either shared file changes, even if the request sounds like a
+website-only change.
+
 ## Takeaway for next time
 
 If a future report is "X looks wrong in Figma" and a screenshot isn't
